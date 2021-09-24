@@ -6,14 +6,16 @@ module.exports = {
         filename: 'index.bundle.js',
     },
     devServer: {
-        static: path.join(__dirname, 'public/'),
+        static: path.join(__dirname, 'public'),
         port: 3003,
+        hot: false,
+        liveReload: false
     },
     entry: './src/index.tsx',
     module: {
         rules: [
             {
-                test: /\.[jt]sx?$/, 
+                test: /\.[jt]sx?$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
             },

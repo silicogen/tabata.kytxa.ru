@@ -1,6 +1,4 @@
 const path = require('path')
-const MiniCssExtructPlugin = require('mini-css-extract-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     output: {
@@ -10,10 +8,8 @@ module.exports = {
     devServer: {
         static: path.join(__dirname, 'public'),
         port: 3003,
-        hot: false,
-        liveReload: false,
-        // hot: true,
-        // liveReload: true,
+        hot: true,
+        liveReload: true,
     },
     entry: './src/index.js',
     module: {
@@ -25,17 +21,12 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [MiniCssExtructPlugin.loader, 'css-loader']
+                use: ['style-loader', 'css-loader'],
             }
         ],
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js', 'jsx'],
     },
-
-    devtool: 'eval-source-map',
-    plugins: [
-        new HtmlWebpackPlugin({ template: './public/index.html' }),
-        new MiniCssExtructPlugin(),
-    ]
+    devtool: 'source-map',
 }

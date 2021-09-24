@@ -1,8 +1,8 @@
 import React from 'react'
 
 export const MyComponent = () => {
-    const time = new Date().toTimeString();
-    return <>
-        <h1>{`MyComponent      ${time}`}</h1>
-    </>
+    // the place for breakpoint
+    const id = "colored";
+    // the place for hot reload
+    return <h1 id={id}>{`MyComponent    hot  reload    !`}</h1>
 }

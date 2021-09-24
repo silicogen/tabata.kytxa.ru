@@ -9,7 +9,9 @@ module.exports = {
         static: path.join(__dirname, 'public'),
         port: 3003,
         hot: false,
-        liveReload: false
+        liveReload: false,
+        // hot: true,
+        // liveReload: true,
     },
     entry: './src/index.js',
     module: {

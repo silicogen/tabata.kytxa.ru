@@ -11,7 +11,7 @@ module.exports = {
         hot: false,
         liveReload: false
     },
-    entry: './src/index.tsx',
+    entry: './src/index.js',
     module: {
         rules: [
             {
@@ -26,7 +26,7 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.tsx', '.ts', '.js', 'jsx'],
     },
 
     devtool: 'eval-source-map',

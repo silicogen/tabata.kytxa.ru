@@ -27,5 +27,5 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.js'],
     },
 
-    devtool: 'eval-source-map', // builds high quality source maps
+    devtool: 'eval-source-map',
 }

@@ -1,8 +1,10 @@
 import React from 'react'
 import './App.css'
+import { MyComponent } from './MyComponent'
 
 const _App: React.FC = () => <>
-    <h1>Hello world            !</h1>
+    <h1>Hello world     d       !</h1>
+    <MyComponent />
 </>
 
 

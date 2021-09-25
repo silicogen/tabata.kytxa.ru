@@ -7,13 +7,18 @@ module.exports = {
         filename: 'index.bundle.js',
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.tsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
     module: {
         rules: [
             {
-                test: /\.[jt]sx?$/,
+                test: /\.jsx?$/,
                 loader: 'babel-loader',
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
                 exclude: /node_modules/,
             },
             {

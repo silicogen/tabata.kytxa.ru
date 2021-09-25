@@ -1,6 +1,6 @@
 const path = require('path')
 
-module.exports = {
+const config = {
     entry: './src/index.js',
     output: {
         path: path.join(__dirname, '/dist'),
@@ -27,11 +27,17 @@ module.exports = {
             }
         ],
     },
-    devtool: 'source-map',
-    devServer: {
-        static: path.join(__dirname, 'public'),
-        port: 3013,
-        hot: true,
-        liveReload: true,
-    },
+}
+
+module.exports = (env, args) => {
+    if (args.mode == "development") {
+        config.devtool = 'source-map';
+        config.devServer = {
+            static: path.join(__dirname, 'public'),
+            port: 3031,
+            hot: true,
+            liveReload: true,
+        }
+    }
+    return config;
 }

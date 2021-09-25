@@ -4,7 +4,7 @@ import { TodoListViewStyledObserver1 } from './TodoList/TodoListViewStyledObserv
 import { } from 'styled-components/cssprop'
 
 const _App = () => <>
-    <h1>Hello hot dbg tsx!</h1>
+    <h1>Hello st sys</h1>
     <TodoListViewStyledObserver1 />
 </>
 

@@ -3,7 +3,7 @@ import './App.css'
 import { MyComponent } from './MyComponent'
 
 const _App = () => <>
-    <h1>Hello world!</h1>
+    <h1>Hello hot dbg tsx!</h1>
     <MyComponent />
 </>
 

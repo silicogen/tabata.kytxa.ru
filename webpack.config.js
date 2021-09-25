@@ -30,7 +30,7 @@ module.exports = {
     devtool: 'source-map',
     devServer: {
         static: path.join(__dirname, 'public'),
-        port: 3003,
+        port: 3013,
         hot: true,
         liveReload: true,
     },

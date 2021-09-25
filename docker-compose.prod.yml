@@ -1,0 +1,21 @@
+version: '3.8'
+
+networks:
+  default:
+    external:
+      name: network
+
+services:
+
+  prod:
+    container_name: "${VIRTUAL_HOST}_prod"
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    environment:
+      - "VIRTUAL_HOST=${VIRTUAL_HOST}"
+      - "LETSENCRYPT_HOST=${VIRTUAL_HOST}"
+      - "LETSENCRYPT_EMAIL=${EMAIL}"
+    expose:
+      - "80"
+    restart: always

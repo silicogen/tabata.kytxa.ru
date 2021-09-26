@@ -9,5 +9,9 @@
         "allowJs": true,
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
-    }
+        "baseUrl": "src"
+    },
+    "include": [
+        "src"
+    ]
 }

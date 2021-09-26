@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import { Todo, TodoList } from "./TodoList";
-import { css } from "../utils/css"
+import { css } from "utils/css"
 
 const TodoView = observer(
     ({ todo }: { todo: Todo }) =>

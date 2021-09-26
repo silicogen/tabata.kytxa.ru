@@ -25,18 +25,19 @@ const Providers: React.FC = ({ children }) => {
   const { data, error, isPending } = useAsync({ promiseFn: getRoot })
   if (isPending) return <h1>Загрузка...</h1>
   if (error) throw error;
-  if (data) 
-  return <>
-    <Provider
-    // root={data} store={forumStore}
-    >
-      <ThemeProvider
-        theme={{}}
+  if (data)
+    return <>
+      <Provider
+        root={data}
+      // store={forumStore}
       >
-        {children}
-      </ThemeProvider>
-    </Provider>
-  </>;
+        <ThemeProvider
+          theme={{}}
+        >
+          {children}
+        </ThemeProvider>
+      </Provider>
+    </>;
   return <h1>Whoops!!! Something defaul has happend!!! It was supposed imposible!!!</h1>
 }
 

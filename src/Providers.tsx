@@ -1,13 +1,13 @@
 import React from 'react';
-// import localforage from 'localforage';
+import localforage from 'localforage';
 import { ThemeProvider } from 'styled-components';
 import { Provider } from 'mobx-react';
-// import theme from "css/theme";
-// import Root from "store/Root";
-// import { persist } from 'mst-persist';
+import theme from "css/theme";
+import Root from "store/Root";
+import { persist } from 'mst-persist';
 import { observer } from 'mobx-react-lite';
-// import Goer from 'store/Goer';
-// import { useAsync } from "react-async";
+import Goer from 'store/Goer';
+import { useAsync } from "react-async";
 // import forumStore from 'forum/store/index';
 
 

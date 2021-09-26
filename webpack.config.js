@@ -3,7 +3,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 
 const config = {
-    entry: './src/index.js',
+    entry: './src/index.tsx',
     output: {
         path: path.join(__dirname, '/build'),
         filename: 'index.bundle.js',

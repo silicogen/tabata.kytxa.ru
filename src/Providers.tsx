@@ -11,21 +11,21 @@ import { useAsync } from "react-async";
 // import forumStore from 'forum/store/index';
 
 
-// async function getRoot() {
-//   const root = Root.create({}, { goer: new Goer() });
-//   await Promise.all([
-//     persist('tabata', root, { storage: localforage, jsonify: false, blacklist: ["ui", "tmp", "selected"] }),
-//     persist(`tabata.ui`, root.ui, { storage: localforage, jsonify: false, blacklist: ["navMenuIsCollapsed"] }),
-//     persist(`tabata.selected`, root.selected, { storage: localforage, jsonify: false })
-//   ]);
-//   return root;
-// }
+async function getRoot() {
+  const root = Root.create({}, { goer: new Goer() });
+  await Promise.all([
+    persist('tabata', root, { storage: localforage, jsonify: false, blacklist: ["ui", "tmp", "selected"] }),
+    persist(`tabata.ui`, root.ui, { storage: localforage, jsonify: false, blacklist: ["navMenuIsCollapsed"] }),
+    persist(`tabata.selected`, root.selected, { storage: localforage, jsonify: false })
+  ]);
+  return root;
+}
 
 const Providers: React.FC = ({ children }) => {
-  // const { data, error, isPending } = useAsync({ promiseFn: getRoot })
-  // if (isPending) return <h1>Загрузка...</h1>
-  // if (error) throw error;
-  // if (data) 
+  const { data, error, isPending } = useAsync({ promiseFn: getRoot })
+  if (isPending) return <h1>Загрузка...</h1>
+  if (error) throw error;
+  if (data) 
   return <>
     <Provider
     // root={data} store={forumStore}

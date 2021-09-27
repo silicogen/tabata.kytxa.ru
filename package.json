@@ -5,10 +5,12 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack serve --mode development",
-    "start1": "http-server build -a localhost -p 3091",
+    "start1": "http-server build -a localhost -p 3191",
     "build": "webpack --mode production"
   },
   "dependencies": {
+    "@svgr/webpack": "^5.5.0",
+    "downloadjs": "^1.4.7",
     "localforage": "^1.10.0",
     "mobx": "^6.3.3",
     "mobx-react": "^7.2.0",
@@ -19,6 +21,7 @@
     "react": "^17.0.2",
     "react-async": "^10.0.1",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^5.3.0",
     "styled-components": "^5.3.1",
     "styled-system": "^5.1.5",
     "uuid": "^8.3.2"
@@ -26,10 +29,15 @@
   "devDependencies": {
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.5",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.15.6",
     "@babel/preset-env": "^7.15.6",
     "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/downloadjs": "^1.4.2",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
+    "@types/react-router-dom": "^5.3.0",
     "@types/styled-components": "^5.1.14",
     "@types/styled-system": "^5.1.13",
     "@types/styled-system__css": "^5.0.16",
@@ -41,8 +49,7 @@
     "css-loader": "^6.3.0",
     "http-server": "^13.0.2",
     "style-loader": "^3.3.0",
-    "ts-loader": "^9.2.6",
-    "typescript": "^4.4.3",
+    "url-loader": "^4.1.1",
     "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.2.1",

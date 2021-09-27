@@ -1,4 +1,5 @@
-import { css } from "utils";
+import React from 'react';
+import { css } from '@styled-system/css';
 import 'styled-components/macro';
 import { SystemStyleObject } from "@styled-system/css";
 import { ReactComponent as PlaySVG } from "icons/me/play.svg";
@@ -39,6 +40,11 @@ const svgCSS: SystemStyleObject = {
 }
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & { diametr?: Strings }
+
+export const PlusButton1: React.FC<ButtonProps> = props =>
+  <button {...props} >
+    <PlusSVG />
+  </button>
 
 export const PlusButton: React.FC<ButtonProps> = props =>
   <button {...props} css={css(buttonCSS)}>

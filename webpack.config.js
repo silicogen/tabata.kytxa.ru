@@ -18,19 +18,28 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
-                loader: 'babel-loader',
+                test: /\.[jt]sx?$/,
                 exclude: /node_modules/,
+                loader: 'babel-loader'
             },
-            {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
-            },
+            // {
+            //     test: /\.jsx?$/,
+            //     loader: 'babel-loader',
+            //     exclude: /node_modules/,
+            // },
+            // {
+            //     test: /\.tsx?$/,
+            //     use: 'ts-loader',
+            //     exclude: /node_modules/,
+            // },
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
-            }
+            },
+            {
+                test: /\.svg$/,
+                use: ['@svgr/webpack', 'url-loader'],
+            },
         ],
     },
     plugins: [

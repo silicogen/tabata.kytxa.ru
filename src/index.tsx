@@ -4,9 +4,10 @@ import { App } from './App'
 import Providers from 'Providers';
 
 ReactDOM.render(
-    <Providers>
+    // <Providers>
         <App />
-    </Providers>,
+    // </Providers>
+    ,
     document.getElementById('root')
 )
 

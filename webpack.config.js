@@ -3,7 +3,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 
 const config = {
-    entry: ['babel-polyfill','./src/index.tsx'],
+    entry: ['babel-polyfill', './src/index.tsx'],
     output: {
         path: path.join(__dirname, '/build'),
         filename: 'index.bundle.js',
@@ -32,13 +32,25 @@ const config = {
             //     use: 'ts-loader',
             //     exclude: /node_modules/,
             // },
+
+            {
+                test: /\.svg$/,
+                use: ['@svgr/webpack', 'url-loader'],
+            },
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.svg$/,
-                use: ['@svgr/webpack', 'url-loader'],
+                test: /\.s[ac]ss$/i,
+                use: [
+                    // Creates `style` nodes from JS strings
+                    "style-loader",
+                    // Translates CSS into CommonJS
+                    "css-loader",
+                    // Compiles Sass to CSS
+                    "sass-loader",
+                ],
             },
         ],
     },

@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "utils";
-import 'styled-components/macro';
+// import 'styled-components/macro';
 import { ReactComponent as ChevronSVG } from "icons/oi/chevron-right.svg";
 import { ReactComponent as CaretSVG } from "icons/oi/caret-right.svg";
 import theme from "css/theme";

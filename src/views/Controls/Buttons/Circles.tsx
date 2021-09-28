@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@styled-system/css';
-import 'styled-components/macro';
+// import 'styled-components/macro';
 import { SystemStyleObject } from "@styled-system/css";
 import { ReactComponent as PlaySVG } from "icons/me/play.svg";
 import { ReactComponent as PauseSVG } from "icons/me/pause.svg";

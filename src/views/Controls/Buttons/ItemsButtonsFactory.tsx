@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { css } from "utils";
-import 'styled-components/macro';
+// import 'styled-components/macro';
 import { useTheme } from "css/theme";
 import { PlusButton, EditButton, UpButton, DownButton, DeleteButton } from ".";
 import { ItemsBoxFactory } from "store/items";

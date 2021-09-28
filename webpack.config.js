@@ -3,7 +3,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 
 const config = {
-    entry: './src/index.tsx',
+    entry: ['babel-polyfill','./src/index.tsx'],
     output: {
         path: path.join(__dirname, '/build'),
         filename: 'index.bundle.js',
@@ -43,13 +43,9 @@ const config = {
         ],
     },
     plugins: [
-        new CopyPlugin({ patterns: [{ from: "public" }] }),
-        new WorkboxPlugin.GenerateSW({
-            clientsClaim: true,
-            skipWaiting: true,
-            maximumFileSizeToCacheInBytes : 5000000
-        }),
-    ],
+        new CopyPlugin({ patterns: [{ from: "public" }] })
+    ]
+
 }
 
 module.exports = (env, args) => {
@@ -61,6 +57,14 @@ module.exports = (env, args) => {
             hot: true,
             liveReload: true,
         }
+    } else {
+        config.plugins.push(
+            new WorkboxPlugin.GenerateSW({
+                clientsClaim: true,
+                skipWaiting: true,
+                maximumFileSizeToCacheInBytes: 5000000
+            })
+        )
     }
     return config;
 }

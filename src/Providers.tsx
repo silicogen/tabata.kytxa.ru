@@ -12,7 +12,9 @@ import { useAsync } from "react-async";
 
 
 async function getRoot() {
-  const root = Root.create({}, { goer: new Goer() });
+  const root = Root.create({}, {
+    goer: new Goer() 
+  });
   await Promise.all([
     persist('tabata', root, { storage: localforage, jsonify: false, blacklist: ["ui", "tmp", "selected"] }),
     persist(`tabata.ui`, root.ui, { storage: localforage, jsonify: false, blacklist: ["navMenuIsCollapsed"] }),
@@ -24,9 +26,12 @@ async function getRoot() {
 const Providers: React.FC = ({ children }) => {
   const { data, error, isPending } = useAsync({ promiseFn: getRoot })
   if (isPending) return <h1>Загрузка...</h1>
-  if (error) throw error;
+  if (error) return <div>{error.message }</div> ;
+  // if (data) {
+  //   return <div>{children} </div>;
+  // }
   if (data) return <>
-    <Provider root={data} 
+    <Provider root={data}
     // store={forumStore}
     >
       <ThemeProvider theme={{}}>

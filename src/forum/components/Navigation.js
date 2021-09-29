@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";

@@ -7,6 +7,7 @@ const config = {
     output: {
         path: path.join(__dirname, '/build'),
         filename: 'index.bundle.js',
+        publicPath: '/'
     },
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -68,6 +69,7 @@ module.exports = (env, args) => {
             port: 3091,
             hot: true,
             liveReload: true,
+            historyApiFallback: true,
         }
     } else {
         config.plugins.push(

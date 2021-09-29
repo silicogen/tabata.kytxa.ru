@@ -1,14 +1,15 @@
 import React from 'react';
 import localforage from 'localforage';
 import { ThemeProvider } from 'styled-components';
-import { Provider } from 'mobx-react';
+import { Provider as MobxProvider } from 'mobx-react';
 import theme from "css/theme";
 import Root from "store/Root";
 import { persist } from 'mst-persist';
 import { observer } from 'mobx-react-lite';
 import Goer from 'store/Goer';
 import { useAsync } from "react-async";
-// import forumStore from 'forum/store/index';
+import forumStore from 'forum/store/index';
+import { Provider as ReduxProvider } from "react-redux"
 
 
 async function getRoot() {
@@ -26,13 +27,13 @@ const Providers: React.FC = ({ children }) => {
   if (isPending) return <h1>Загрузка...</h1>
   if (error) throw error;
   if (data) return <>
-    <Provider root={data} 
-    // store={forumStore}
-    >
-      <ThemeProvider theme={theme}>
-        {children}
-      </ThemeProvider>
-    </Provider>
+    <MobxProvider root={data}>
+      <ReduxProvider store={forumStore}>
+        <ThemeProvider theme={theme}>
+          {children}
+        </ThemeProvider>
+      </ReduxProvider>
+    </MobxProvider>
   </>;
   return <h1>Whoops!!! Something defaul has happend!!! It was supposed imposible!!!</h1>
 }

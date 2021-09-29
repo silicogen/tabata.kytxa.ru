@@ -1,20 +1,19 @@
 import React from 'react';
 import { css } from '@styled-system/css';
-// import 'styled-components/macro';
 import { SystemStyleObject } from "@styled-system/css";
-import { ReactComponent as PlaySVG } from "icons/me/play.svg";
-import { ReactComponent as PauseSVG } from "icons/me/pause.svg";
-import { ReactComponent as StopSVG } from "icons/me/stop.svg";
-import { ReactComponent as PlusSVG } from "icons/me/plus-round.svg";
-import { ReactComponent as MinusSVG } from "icons/me/minus-round.svg";
-import { ReactComponent as CancelSVG } from "icons/me/close-round.svg";
-import { ReactComponent as DeleteSVG } from "icons/me/android-delete.svg";
-import { ReactComponent as EditSVG } from "icons/me/compose.svg";
-import { ReactComponent as UpSVG } from "icons/me/row-up-c.svg";
-import { ReactComponent as DownSVG } from "icons/me/row-down-c.svg";
-import { ReactComponent as LeftSVG } from "icons/me/arrow-left-c.svg";
-import { ReactComponent as ReturnOkSVG } from "icons/me/return-ok.svg";
-import { ReactComponent as OkSVG } from "icons/me/checkmark-round.svg";
+import PlaySVG  from "icons/me/play.svg";
+import PauseSVG  from "icons/me/pause.svg";
+import StopSVG  from "icons/me/stop.svg";
+import PlusSVG  from "icons/me/plus-round.svg";
+import MinusSVG  from "icons/me/minus-round.svg";
+import CancelSVG  from "icons/me/close-round.svg";
+import DeleteSVG  from "icons/me/android-delete.svg";
+import EditSVG  from "icons/me/compose.svg";
+import UpSVG  from "icons/me/row-up-c.svg";
+import DownSVG  from "icons/me/row-down-c.svg";
+import LeftSVG  from "icons/me/arrow-left-c.svg";
+import ReturnOkSVG  from "icons/me/return-ok.svg";
+import OkSVG  from "icons/me/checkmark-round.svg";
 
 type Strings = string | string[];
 

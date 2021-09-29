@@ -9,7 +9,7 @@ import Buttons from "./Buttons";
 import Exercizes from "./Exercizes";
 import Phazes from "./Phazes";
 import Table from "./Table";
-import { ReactComponent as PinSVG } from "icons/me/pin.svg";
+import PinSVG  from "icons/me/pin.svg";
 
 const Page: React.FC = () => {
     const root = useRoot();

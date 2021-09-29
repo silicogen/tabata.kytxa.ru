@@ -5,7 +5,7 @@ import { css, runBeforeFC } from "utils";
 import { useTheme } from "css/theme";
 import { useRoot } from "store/Root";
 import { TdMain, TdForWorkout, Tr } from "./Row";
-import { ReactComponent as LinkIntactSVG } from "icons/oi/link-intact.svg";
+import LinkIntactSVG  from "icons/oi/link-intact.svg";
 
 interface Props {
     forWorkout: boolean;

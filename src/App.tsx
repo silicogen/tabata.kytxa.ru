@@ -16,7 +16,7 @@ import { Page as PhazesPage, DisplayPath as PhazesDisplayPath } from 'views/Page
 import { ImportExport } from "views/Pages/ImportExport";
 import Goer from "views/Pages/Goer";
 import About from "views/Pages/About";
-// import { App as ForumApp } from "forum";
+import { App as ForumApp } from "forum";
 import { observer } from "mobx-react";
 import { HamburgerButton } from "views/Controls/Buttons";
 import theme from "css/theme";
@@ -70,7 +70,7 @@ const App: React.FC = () => {
                     <Route path="/phazes" component={PhazesPage} />
                     <Route path="/importExport" component={ImportExport} />
                     <Route path="/about" component={About} />
-                    {/* <Route path="/forum" component={ForumApp} /> */}
+                    <Route path="/forum" component={ForumApp} />
                 </Switch>
             </main>
         </BrowserRouter>

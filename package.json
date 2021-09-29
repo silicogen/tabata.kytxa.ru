@@ -9,7 +9,6 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
-    "@svgr/webpack": "^5.5.0",
     "downloadjs": "^1.4.7",
     "localforage": "^1.10.0",
     "mobx": "^6.3.3",
@@ -45,10 +44,10 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-styled-components": "^1.13.2",
     "babel-polyfill": "^6.26.0",
-    "const": "^1.0.0",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.3.0",
     "http-server": "^13.0.2",
+    "react-svg-loader": "^3.0.3",
     "sass": "^1.42.1",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.3.0",

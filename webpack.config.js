@@ -23,20 +23,24 @@ const config = {
                 exclude: /node_modules/,
                 loader: 'babel-loader'
             },
-            // {
-            //     test: /\.jsx?$/,
-            //     loader: 'babel-loader',
-            //     exclude: /node_modules/,
-            // },
-            // {
-            //     test: /\.tsx?$/,
-            //     use: 'ts-loader',
-            //     exclude: /node_modules/,
-            // },
-
             {
                 test: /\.svg$/,
-                use: ['@svgr/webpack', 'url-loader'],
+                use: [
+                    { loader: 'babel-loader' },
+                    {
+                        loader: 'react-svg-loader',
+                        options: {
+                            jsx: true,
+                            svgo: {
+                                plugins: [
+                                    {
+                                        removeViewBox: false,
+                                    },
+                                ],
+                            }
+                        },
+                    },
+                ],
             },
             {
                 test: /\.css$/,

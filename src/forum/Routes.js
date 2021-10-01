@@ -17,7 +17,7 @@ import AuthPosts from './components/posts/AuthPosts'
 const Routes = () => {
   let { path } = useRouteMatch();
   return (
-    <Router history={history}>
+    // <Router history={history}>
       <div className="App">
         <Switch>
           <Route exact path={path} component={Dashboard} />
@@ -31,7 +31,7 @@ const Routes = () => {
           <Route path={`${path}/authposts`} component={AuthPosts} />
         </Switch>
       </div>
-    </Router>
+    // </Router>
 
   );
 }

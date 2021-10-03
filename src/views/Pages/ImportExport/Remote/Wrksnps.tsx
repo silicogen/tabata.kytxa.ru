@@ -10,7 +10,7 @@ const Wrksnps0 = () => {
         axios
             .get(`${API_ROUTE}/posts`)
             .then(response => remote.wrksnps.setItems(response.data.response));
-    });
+    }, []);
 
     return <div>
         <table>

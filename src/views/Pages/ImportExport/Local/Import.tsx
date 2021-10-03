@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { css } from "utils";
-// import 'styled-components/macro';
+import { css } from "@styled-system/css";
+
 import { applySnapshot } from "mobx-state-tree";
 import { useRoot } from "store/Root";
 import FileSelector from './FileSelector';

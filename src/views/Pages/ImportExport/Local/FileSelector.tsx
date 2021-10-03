@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { css } from "utils";
-// import 'styled-components/macro';
+import { css } from "@styled-system/css";
+
 import { useTheme } from 'css/theme';
 
 const onDragOver: React.DragEventHandler<HTMLLabelElement> = e => {

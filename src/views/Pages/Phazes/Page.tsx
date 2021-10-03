@@ -1,6 +1,6 @@
 import React from "react";
-import { css } from "utils";
-// import 'styled-components/macro';
+import { css } from "@styled-system/css";
+
 import { RouteComponentProps } from "react-router-dom";
 import { observer } from "mobx-react";
 import { useRoot } from "store/Root";

@@ -1,5 +1,5 @@
 import React from "react";
-import { css } from "utils";
+import { css } from "@styled-system/css";
 import Import from './Import';
 import Export from './Export';
 import { useTheme } from "css/theme";

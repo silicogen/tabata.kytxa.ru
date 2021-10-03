@@ -1,6 +1,6 @@
 import React from "react";
-import { css } from "utils";
-// import 'styled-components/macro';
+import { css } from "@styled-system/css";
+
 import ChevronSVG  from "icons/oi/chevron-right.svg";
 import CaretSVG  from "icons/oi/caret-right.svg";
 import theme from "css/theme";

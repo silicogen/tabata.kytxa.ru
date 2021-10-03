@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
-import { css } from "utils";
-// import 'styled-components/macro';
+import { css } from "@styled-system/css";
+
 import { useTheme } from "css/theme";
 import { useRoot } from "store/Root";
 import { TdMain, TdForWorkout, Tr } from "./Row";

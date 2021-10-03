@@ -1,6 +1,6 @@
 import React from "react";
-import { css } from "utils";
-// import 'styled-components/macro';
+import { css } from "@styled-system/css";
+
 import { Instance } from "mobx-state-tree";
 import { observer } from "mobx-react";
 import { Workout } from "store/Workout";

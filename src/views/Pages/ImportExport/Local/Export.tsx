@@ -1,6 +1,5 @@
 import React from "react";
-import { css } from "utils";
-// import 'styled-components/macro';
+import { css } from "@styled-system/css";
 import download from 'downloadjs';
 import { useTheme } from 'css/theme';
 import { useRoot } from "store/Root";

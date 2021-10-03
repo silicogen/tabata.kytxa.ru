@@ -1,8 +1,8 @@
 import React from "react";
 import { Instance } from "mobx-state-tree";
 import { observer } from "mobx-react";
-import { css } from "utils";
-// import 'styled-components/macro';
+import { css } from "@styled-system/css";
+
 import { useRoot } from "store/Root";
 import { useTheme } from "css/theme";
 import { Phaze } from "store/Phaze";

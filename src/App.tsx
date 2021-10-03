@@ -13,7 +13,7 @@ import Home from "views/Pages/Home";
 import { Page as WorkoutsPage } from 'views/Pages/Workouts';
 import { Page as ExercizesPage, DisplayPath as ExercizesDisplayPath } from 'views/Pages/Exercizes';
 import { Page as PhazesPage, DisplayPath as PhazesDisplayPath } from 'views/Pages/Phazes';
-import { ImportExport } from "views/Pages/ImportExport";
+import { ImportExport } from "views/Pages/ImportExport/Local";
 import Goer from "views/Pages/Goer";
 import About from "views/Pages/About";
 import { App as ForumApp } from "forum";

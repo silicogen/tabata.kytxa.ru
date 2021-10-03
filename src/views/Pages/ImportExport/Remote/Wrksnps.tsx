@@ -8,13 +8,11 @@ import { observer } from "mobx-react";
 
 const Wrksnps0 = () => {
     const remote = useRemote();
-    const [wrksnps, setPost] = useState([]);
-
     useEffect(() => {
         axios
             .get(`${API_ROUTE}/posts`)
             .then((response) => {
-                setPost(response.data.response);
+
                 const content = (response as any).data.response;
                 // const json = JSON.parse(content);
                 // remote.wrksnps.items.replace(content);
@@ -23,13 +21,12 @@ const Wrksnps0 = () => {
                 const c: { id: any; title: any; content: any; }[] = [];
                 ca.forEach(i => {
                     const w = {
-                        id: (i as any).id.toString() as string,
-                        title: (i as any).title as string,
-                        content: (i as any).content as string,
+                        id: (i as any).id.toString(),
+                        title: (i as any).title,
+                        content: (i as any).content,
 
                     }
                     c.push(w);
-                    let j = 0;
                 })
                 remote.wrksnps.setAll(c as any);
                 // applySnapshot(remote.wrksnps.items, content);
@@ -47,13 +44,6 @@ const Wrksnps0 = () => {
                 </tr>
             </thead>
             <tbody>
-                {wrksnps.map(wrksnp => (
-                    <tr key={wrksnp.id}>
-                        <td>{wrksnp.id}</td>
-                        <td>{wrksnp.title}</td>
-                        <td>{wrksnp.content}</td>
-                    </tr>
-                ))}
                 {remote.wrksnps.items.map(wrksnp => (
                     <tr key={wrksnp.id}>
                         <td>{wrksnp.id}</td>

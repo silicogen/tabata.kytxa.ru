@@ -1,10 +1,8 @@
-import { types, Instance } from "mobx-state-tree";
-
-
+import { types } from "mobx-state-tree";
 
 export const Wrksnp = types
     .model("Wrksnp", {
-        id: "",
+        id: 0,
         title: "",
         content: ""
     })
@@ -12,7 +10,7 @@ export const Wrksnp = types
         setAll({ id, title, content }: { id: string, title: string, content: string }) {
             Object.assign(self, { id, title, content })
         },
-        setID(id: string) {
+        setID(id: number) {
             self.id = id;
         },
         setTitle(title: string) {
@@ -28,7 +26,7 @@ export const Wrksnps = types
         items: types.array(Wrksnp),
     }).
     actions(self => ({
-        setAll(arr: []) {
+        setItems(arr: any[]) {
             self.items.replace(arr);
         }
     }))

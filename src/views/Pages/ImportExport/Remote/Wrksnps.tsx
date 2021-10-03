@@ -1,9 +1,7 @@
 import API_ROUTE from "forum/apiRoute";
 import axios from 'axios'
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useRemote } from "store/Remote";
-import { applySnapshot, cast } from "mobx-state-tree";
-import { Wrksnp } from "store/Remote/Wrksnp";
 import { observer } from "mobx-react";
 
 const Wrksnps0 = () => {
@@ -11,28 +9,8 @@ const Wrksnps0 = () => {
     useEffect(() => {
         axios
             .get(`${API_ROUTE}/posts`)
-            .then((response) => {
-
-                const content = (response as any).data.response;
-                // const json = JSON.parse(content);
-                // remote.wrksnps.items.replace(content);
-                const ca = Array.from(content);
-                // remote.wrksnps.items.replace(ca);
-                const c: { id: any; title: any; content: any; }[] = [];
-                ca.forEach(i => {
-                    const w = {
-                        id: (i as any).id.toString(),
-                        title: (i as any).title,
-                        content: (i as any).content,
-
-                    }
-                    c.push(w);
-                })
-                remote.wrksnps.setAll(c as any);
-                // applySnapshot(remote.wrksnps.items, content);
-                let i = 0;
-            });
-    }, []);
+            .then(response => remote.wrksnps.setItems(response.data.response));
+    });
 
     return <div>
         <table>
@@ -57,4 +35,3 @@ const Wrksnps0 = () => {
     </div>
 }
 export const Wrksnps = observer(Wrksnps0);
-// const res  = await axios.get(`${API_ROUTE}/posts`)

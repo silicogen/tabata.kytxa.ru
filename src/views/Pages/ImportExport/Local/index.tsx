@@ -1,1 +1,1 @@
-export { Page as ImportExport } from "./Page"
+export { Page as LocalImportExport } from "./Page"

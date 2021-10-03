@@ -13,14 +13,14 @@ import Home from "views/Pages/Home";
 import { Page as WorkoutsPage } from 'views/Pages/Workouts';
 import { Page as ExercizesPage, DisplayPath as ExercizesDisplayPath } from 'views/Pages/Exercizes';
 import { Page as PhazesPage, DisplayPath as PhazesDisplayPath } from 'views/Pages/Phazes';
-import { ImportExport } from "views/Pages/ImportExport/Local";
+import { ImportExport } from "views/Pages/ImportExport";
 import Goer from "views/Pages/Goer";
 import About from "views/Pages/About";
 import { App as ForumApp } from "forum";
 import { observer } from "mobx-react";
 import { HamburgerButton } from "views/Controls/Buttons";
 import theme from "css/theme";
-
+ImportExport
 const App: React.FC = () => {
     const root = useRoot();
     const uiStore = root.ui;

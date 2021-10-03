@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { Provider as MobxProvider } from 'mobx-react';
 import theme from "css/theme";
 import Root from "store/Root";
+import Remote from "store/Remote"
 import { persist } from 'mst-persist';
 import { observer } from 'mobx-react-lite';
 import Goer from 'store/Goer';
@@ -23,11 +24,12 @@ async function getRoot() {
 }
 
 const Providers: React.FC = ({ children }) => {
+  const remote = Remote.create({});
   const { data, error, isPending } = useAsync({ promiseFn: getRoot })
   if (isPending) return <h1>Загрузка...</h1>
   if (error) throw error;
   if (data) return <>
-    <MobxProvider root={data}>
+    <MobxProvider root={data} remote={remote}>
       <ReduxProvider store={forumStore}>
         <ThemeProvider theme={theme}>
           {children}

@@ -2,6 +2,7 @@ import React from "react";
 import { css } from "@styled-system/css";
 import { PutButton } from "./PutButton";
 import { GetButton } from "./GetButton";
+import { Wrksnps } from "./Wrksnps";
 import { useTheme } from "css/theme";
 
 const Page: React.FC = () => {
@@ -16,6 +17,11 @@ const Page: React.FC = () => {
             <h3>Импорт</h3>
             <GetButton />
         </section>
+        <section css={css(theme.sections.common)}>
+            <h3>Сохранённые наборы тренировок</h3>
+            <Wrksnps />
+        </section>
+
     </div>;
 }
 

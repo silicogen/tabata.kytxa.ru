@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
-import { css, runBeforeFC } from "utils";
-
+import { runBeforeFC } from "utils";
+import { css } from "@styled-system/css";
 import { useTheme } from "css/theme";
 import { useRoot } from "store/Root";
 import { TdMain, TdForWorkout, Tr } from "./Row";
-import LinkIntactSVG  from "icons/oi/link-intact.svg";
+import LinkIntactSVG from "icons/oi/link-intact.svg";
 
 interface Props {
     forWorkout: boolean;
@@ -27,7 +27,7 @@ const Table: React.FC<Props> = ({ forWorkout }) => {
                 <th css={css({ textAlign: "start" })}>Наименование фазы</th>
                 <th ><LinkIntactSVG css={css(theme.svgs.tableHeader)} /></th>
                 {forWorkout && <>
-                    <th css={css({ })}>
+                    <th css={css({})}>
                         Есть
                     </th>
                     <th css={css({})}>

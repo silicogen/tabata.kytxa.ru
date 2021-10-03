@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useEffect } from "react";
 import { useRemote } from "store/Remote";
 import { observer } from "mobx-react";
-// import { css } from "styled-components";
 import { css } from "@styled-system/css";
 import { useTheme } from "css/theme";
 

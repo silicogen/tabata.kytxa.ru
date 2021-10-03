@@ -6,6 +6,7 @@ import { SignOut } from '../store/modules/auth/actions/authAction';
 import Default from '../Assets/default.png';
 import './Navigation.css';
 import API_ROUTE from "forum/apiRoute";
+import {PutButton} from "views/Pages/Home"
 
 import {
   Collapse,
@@ -50,6 +51,7 @@ const Navigation = () => {
 
   const SignedInLinks = (
     <React.Fragment>
+      <PutButton />
       <NavItem className="mt-2" style={{ marginRight: "15px" }}>
         <NavLink to={`/forum/createpost`}>Create Post</NavLink>
       </NavItem>

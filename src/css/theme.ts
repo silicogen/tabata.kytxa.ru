@@ -192,6 +192,17 @@ const theme = {
     } as SystemStyleObject
   },
   inputs: {
+    button: {
+      minWidth: "10rem",
+      border: "none",
+      borderBottom: "1px solid",
+      fontSize: fontSizes.input,
+      outline: "none",
+color:"red",
+      bg: colors.button,
+      borderRadius: "0.4rem",
+
+    } as SystemStyleObject,
     name: {
       minWidth: "10rem",
       border: "none",

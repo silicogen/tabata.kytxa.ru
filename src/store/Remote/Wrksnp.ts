@@ -4,10 +4,14 @@ export const Wrksnp = types
     .model("Wrksnp", {
         id: types.identifierNumber,
         title: types.string,
+        updated_at: types.string
     })
     .actions(self => ({
         setTitle(title: string) {
             self.title = title;
+        },
+        setUpdated_at(time: string) {
+            self.updated_at = time;
         }
     }));
 

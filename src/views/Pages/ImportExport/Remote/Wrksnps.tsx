@@ -8,7 +8,7 @@ import { useTheme } from "css/theme";
 
 
 const _Wrksnps = () => {
-    const [resp, setRest] = useState<any>();
+    const [resp, setResp] = useState<any>();
     const theme = useTheme();
     const remote = useRemote();
     const wrksnps = remote.wrksnps;
@@ -17,7 +17,7 @@ const _Wrksnps = () => {
             .then(resp => {
                 const response = resp.data.response;
                 wrksnps.setItems(response)
-                setRest(response);
+                setResp(response);
             });
     }
     useEffect(effect, []);
@@ -41,8 +41,8 @@ const _Wrksnps = () => {
                         <td>{wrksnp.id}</td>
                         <td>{wrksnp.title}</td>
                         <td>{resp?.[i].author.username}</td>
-                        <td>{resp?.[i].created_at}</td>
-                        <td>{resp?.[i].updated_at}</td>
+                        <td>{resp?.[i].created_at.substr(0, 19)}</td>
+                        <td>{wrksnp.updated_at.substr(0, 19)}</td>
                     </tr>
                 )}
             </tbody>

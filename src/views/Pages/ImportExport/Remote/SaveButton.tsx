@@ -9,7 +9,7 @@ import { observer } from "mobx-react";
 
 
 
-export const _PutButton: React.FC = () => {
+export const _SaveButton: React.FC = () => {
   const theme = useTheme();
   const root = useRoot();
   const wrksnp = useRemote().wrksnps.selected;
@@ -29,4 +29,4 @@ export const _PutButton: React.FC = () => {
   </button >
 }
 
-export const PutButton = observer(_PutButton);
+export const SaveButton = observer(_SaveButton);

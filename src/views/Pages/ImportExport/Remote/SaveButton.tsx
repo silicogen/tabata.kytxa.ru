@@ -19,7 +19,7 @@ export const _SaveButton: React.FC = () => {
     onClick={async () => {
       const snap = getSnapshot(root);
       const snapStr = JSON.stringify(snap, undefined, 4);
-      await axios.put(`${API_ROUTE}/posts/${wrksnp.id}`, {
+      await axios.put(`${API_ROUTE}/posts/${wrksnp!.id}`, {
         content: snapStr,
         title: new Date().toLocaleString()
       })

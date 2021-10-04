@@ -13,17 +13,18 @@ export const _SaveButton: React.FC = () => {
   const theme = useTheme();
   const root = useRoot();
   const wrksnp = useRemote().wrksnps.selected;
+  const onClick = () => {
+    const snap = getSnapshot(root);
+    const snapStr = JSON.stringify(snap, undefined, 4);
+    axios.put(`${API_ROUTE}/posts/${wrksnp!.id}`, {
+      content: snapStr,
+      title: new Date().toLocaleString()
+    })
+  }
   return <button
     css={css(theme.buttons.primary)}
     disabled={!wrksnp}
-    onClick={async () => {
-      const snap = getSnapshot(root);
-      const snapStr = JSON.stringify(snap, undefined, 4);
-      await axios.put(`${API_ROUTE}/posts/${wrksnp!.id}`, {
-        content: snapStr,
-        title: new Date().toLocaleString()
-      })
-    }}
+    onClick={onClick}
   >
     Сохранить
   </button >

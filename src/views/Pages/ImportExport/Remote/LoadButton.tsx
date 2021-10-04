@@ -5,27 +5,24 @@ import { applySnapshot } from "mobx-state-tree";
 import { observer } from "mobx-react";
 import { useTheme } from 'css/theme';
 import { useRoot } from "store/Root";
+import { useRemote } from "store/Remote";
 
 const _LoadButton: React.FC = () => {
   const theme = useTheme();
   const root = useRoot();
-  return <div> <button
+  const wrksnp = useRemote().wrksnps.selected;
+  return <button
     css={css(theme.buttons.primary)}
+    disabled={!wrksnp}
     onClick={async () => {
-      try {
-        const res = await axios.get(`${API_ROUTE}/posts/${"1"}`);
-        const content = (res as any).data.response.content;
-        const json = JSON.parse(content);
-
-        applySnapshot(root, json);
-      } catch (error) {
-        console.error(error);
-      }
+      const res = await axios.get(`${API_ROUTE}/posts/${wrksnp?.id}`);
+      const content = res.data.response.content;
+      const json = JSON.parse(content);
+      applySnapshot(root, json);
     }}
   >
-    Get
+    Загрузить
   </button>
-  </div>
 }
 
 export const LoadButton = observer(_LoadButton);

@@ -1,6 +1,6 @@
 import API_ROUTE from "forum/apiRoute";
 import axios from 'axios'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRemote } from "store/Remote";
 import { observer } from "mobx-react";
 import { css } from "@styled-system/css";
@@ -8,12 +8,17 @@ import { useTheme } from "css/theme";
 
 
 const _Wrksnps = () => {
+    const [resp, setRest] = useState<any>();
     const theme = useTheme();
     const remote = useRemote();
     const wrksnps = remote.wrksnps;
     const effect = () => {
         axios.get(`${API_ROUTE}/posts`)
-            .then(resp => wrksnps.setItems(resp.data.response));
+            .then(resp => {
+                const response = resp.data.response;
+                wrksnps.setItems(response)
+                setRest(response);
+            });
     }
     useEffect(effect, []);
     return <div>
@@ -22,18 +27,22 @@ const _Wrksnps = () => {
                 <tr>
                     <th>id</th>
                     <th>Наименование</th>
-                    <th>Работа</th>
+                    <th>Пользователь</th>
+                    <th>Создан</th>
+                    <th>Изменён</th>
                 </tr>
             </thead>
             <tbody>
-                {wrksnps.items.map(wrksnp =>
+                {wrksnps.items.map((wrksnp, i) =>
                     <tr key={wrksnp.id}
                         onClick={() => wrksnps.toggleSelect(wrksnp)}
                         css={css(theme.tableRows.selected(() => wrksnps.isSelected(wrksnp)))}
                     >
                         <td>{wrksnp.id}</td>
                         <td>{wrksnp.title}</td>
-                        <td>{wrksnp.content}</td>
+                        <td>{resp?.[i].author.username}</td>
+                        <td>{resp?.[i].created_at}</td>
+                        <td>{resp?.[i].updated_at}</td>
                     </tr>
                 )}
             </tbody>

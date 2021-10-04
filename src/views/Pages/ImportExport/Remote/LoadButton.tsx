@@ -2,12 +2,11 @@ import { css } from "@styled-system/css";
 import API_ROUTE from "forum/apiRoute";
 import axios from 'axios'
 import { applySnapshot } from "mobx-state-tree";
+import { observer } from "mobx-react";
 import { useTheme } from 'css/theme';
 import { useRoot } from "store/Root";
 
-
-
-export const GetButton: React.FC = () => {
+const _LoadButton: React.FC = () => {
   const theme = useTheme();
   const root = useRoot();
   return <div> <button
@@ -28,3 +27,5 @@ export const GetButton: React.FC = () => {
   </button>
   </div>
 }
+
+export const LoadButton = observer(_LoadButton);

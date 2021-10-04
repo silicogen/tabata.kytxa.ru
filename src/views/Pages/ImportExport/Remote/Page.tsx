@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@styled-system/css";
 import { SaveButton } from "./SaveButton";
-import { GetButton } from "./GetButton";
+import { LoadButton } from "./LoadButton";
 import { Wrksnps } from "./Wrksnps";
 import { useTheme } from "css/theme";
 
@@ -15,7 +15,7 @@ const Page: React.FC = () => {
         </section>
         <section css={css(theme.sections.common)}>
             <h3>Импорт</h3>
-            <GetButton />
+            <LoadButton />
         </section>
         <section css={css(theme.sections.common)}>
             <h3>Сохранённые наборы тренировок</h3>

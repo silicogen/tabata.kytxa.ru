@@ -1,6 +1,7 @@
 import React from "react";
 import { css } from "@styled-system/css";
 import { SaveButton } from "./SaveButton";
+import { SaveNewButton } from "./SaveNewButton";
 import { LoadButton } from "./LoadButton";
 import { Wrksnps } from "./Wrksnps";
 import { useTheme } from "css/theme";
@@ -11,6 +12,7 @@ const Page: React.FC = () => {
         <h2>Экспорт-импорт на на удалённом сервере</h2>
         <section css={css(theme.sections.common)}>
             <h3>Экспорт</h3>
+            <SaveNewButton />
             <SaveButton />
         </section>
         <section css={css(theme.sections.common)}>

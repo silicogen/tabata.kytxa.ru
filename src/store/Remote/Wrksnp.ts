@@ -17,6 +17,30 @@ export const Wrksnp = types
         setUpdated_at(time: string) {
             self.updated_at = time;
         },
+        async save(snapStr: string, title: string) {
+            try {
+                const res = await axios.put(`${API_ROUTE}/posts/${self!.id}`, {
+                    content: snapStr,
+                    title
+                });
+                let message: string;
+                if (res.status >= 200 && res.status < 300) {
+                    const resp = await axios.get(`${API_ROUTE}/posts/${self!.id}`);
+                    const response = resp.data.response;
+                    this?.setUpdated_at(response.updated_at)
+                    this?.setTitle(title);
+                    message = `Текущая работа успешно сохранена с именем ${title}.`
+                } else {
+                    message = `Что-то пошло не так ${title}.`;
+                }
+                window.alert(`${message}
+               status: ${res.status}, statusText: ${res.statusText}`);
+            } catch (ex) {
+                window.alert(
+                    `Не удалось сохранить работу на сервере.
+                ${ex}`)
+            }
+        }
     }))
     .views(self => ({
         async load() {

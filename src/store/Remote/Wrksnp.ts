@@ -89,6 +89,25 @@ export const Wrksnps = types
               ${ex}`)
             }
         },
+        async delete() {
+            const title = self.selected?.title;
+            try {
+                const res = await axios.delete(`${API_ROUTE}/posts/${self.selected!.id}`);
+                let message: string;
+                if (res.status >= 200 && res.status < 300) {
+                    this.rmItem(self.selected!);
+                    message = `Хранилище ${title} успешно удалено.`
+                } else {
+                    message = `Что-то пошло не так ${title}.`;
+                }
+                window.alert(`${message}
+                status: ${res.status}, statusText: ${res.statusText}`);
+            } catch (ex) {
+                window.alert(
+                    `Не удалось удалить хранилище ${title} на сервере.
+                    ${ex}`)
+            }
+        },
         toggleSelect(item: Instance<typeof Wrksnp>) {
             self.selected = self.selected === item ? undefined : item;
         }

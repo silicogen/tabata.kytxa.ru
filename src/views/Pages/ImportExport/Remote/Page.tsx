@@ -1,23 +1,36 @@
-import React from "react";
+import React, { useRef } from "react";
 import { css } from "@styled-system/css";
 import { getSnapshot } from "mobx-state-tree";
-import { SaveButton } from "./SaveButton";
 import { DelButton } from "./DelButton";
 import { LoadButton } from "./LoadButton";
 import { Wrksnps } from "./Wrksnps";
 import { useTheme } from "css/theme";
 import { useRoot } from "store/Root";
 import { useRemote } from "store/Remote";
+import { observer } from "mobx-react-lite";
 
-const Page: React.FC = () => {
+const _Page: React.FC = () => {
     const theme = useTheme();
     const root = useRoot();
-    const wrksnps = useRemote().wrksnps;
-    
+    const remote = useRemote();
+    const wrksnps = remote.wrksnps;
+    const wrksnp = wrksnps.selected;
+    const inputTitleRef = useRef<HTMLInputElement>(null);
+    if (inputTitleRef?.current) {
+        inputTitleRef.current.value = wrksnp?.title ?? "";
+    }
+
     const saveNew = () => {
         const snap = getSnapshot(root);
         const snapStr = JSON.stringify(snap, undefined, 4);
         wrksnps.saveNew(snapStr);
+    }
+
+    const save = () => {
+        const snap = getSnapshot(root);
+        const snapStr = JSON.stringify(snap, undefined, 4);
+        const title = inputTitleRef?.current?.value ?? "";
+        wrksnp!.save(snapStr, title);
     }
 
     return <div css={css(theme.divs.commonPage)}>
@@ -31,7 +44,25 @@ const Page: React.FC = () => {
                 value="Сохранить в новое хранилище"
                 onClick={saveNew}
             />
-            <SaveButton />
+            <div>
+                <label
+                    htmlFor="nameInput"
+                    style={{ justifySelf: "end" }}>
+                    Наименование:
+                </label>
+                <input
+                    ref={inputTitleRef}
+                    id="nameInput"
+                    disabled={!wrksnp}
+                    css={css(theme.inputs.name)}
+                />
+                <input
+                    css={css(theme.buttons.primary)}
+                    type="submit"
+                    value="Сохранить"
+                    onClick={save}
+                />
+            </div>
             <DelButton />
         </section>
         <section css={css(theme.sections.common)}>
@@ -46,4 +77,4 @@ const Page: React.FC = () => {
     </div>;
 }
 
-export { Page };
+export const Page = observer(_Page);

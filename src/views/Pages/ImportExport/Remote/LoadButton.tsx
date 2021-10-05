@@ -1,8 +1,8 @@
 import { css } from "@styled-system/css";
-import { applySnapshot } from "mobx-state-tree";
+import { applySnapshot, SnapshotIn } from "mobx-state-tree";
 import { observer } from "mobx-react";
 import { useTheme } from 'css/theme';
-import { useRoot } from "store/Root";
+import Root, { useRoot } from "store/Root";
 import { useRemote } from "store/Remote";
 
 const _LoadButton: React.FC = () => {
@@ -13,8 +13,9 @@ const _LoadButton: React.FC = () => {
     css={css(theme.buttons.primary)}
     disabled={!wrksnp}
     onClick={async () => {
-      const snp = await wrksnp?.load();
-      applySnapshot(root, snp);
+      const content = await wrksnp?.load();
+      const json: SnapshotIn<typeof Root> = JSON.parse(content);
+      applySnapshot(root, json);
     }}
   >
     Загрузить

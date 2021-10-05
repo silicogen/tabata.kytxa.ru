@@ -20,9 +20,10 @@ export const _SaveNewButton: React.FC = () => {
     e.preventDefault();
     const snap = getSnapshot(root);
     const snapStr = JSON.stringify(snap, undefined, 4);
-    const title = "Новое хранилище";
+    const title = `Новое хранилище ${new Date().toLocaleString()}`;
+    let res;
     try {
-      const res = await axios.post(`${API_ROUTE}/posts`, {
+      res = await axios.post(`${API_ROUTE}/posts`, {
         content: snapStr,
         title
       });

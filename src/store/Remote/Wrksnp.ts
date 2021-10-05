@@ -24,6 +24,9 @@ export const Wrksnps = types
         setItems(arr: any[]) {
             self.items.replace(arr);
         },
+        rmItem(item: Instance<typeof Wrksnp>) {
+            self.items.remove(item);
+        },
         toggleSelect(item: Instance<typeof Wrksnp>) {
             self.selected = self.selected === item ? undefined : item;
         }

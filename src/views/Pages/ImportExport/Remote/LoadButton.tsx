@@ -1,6 +1,4 @@
 import { css } from "@styled-system/css";
-import API_ROUTE from "forum/apiRoute";
-import axios from 'axios'
 import { applySnapshot } from "mobx-state-tree";
 import { observer } from "mobx-react";
 import { useTheme } from 'css/theme';
@@ -15,10 +13,8 @@ const _LoadButton: React.FC = () => {
     css={css(theme.buttons.primary)}
     disabled={!wrksnp}
     onClick={async () => {
-      const res = await axios.get(`${API_ROUTE}/posts/${wrksnp?.id}`);
-      const content = res.data.response.content;
-      const json = JSON.parse(content);
-      applySnapshot(root, json);
+      const snp = await wrksnp?.load();
+      applySnapshot(root, snp);
     }}
   >
     Загрузить

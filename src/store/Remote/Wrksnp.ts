@@ -1,4 +1,7 @@
-import { Instance, SnapshotOrInstance, types } from "mobx-state-tree";
+import axios from "axios";
+import API_ROUTE from "forum/apiRoute";
+import { Instance, SnapshotOrInstance, SnapshotIn, types } from "mobx-state-tree";
+import Root from "store/Root";
 
 export const Wrksnp = types
     .model("Wrksnp", {
@@ -14,6 +17,14 @@ export const Wrksnp = types
         },
         setUpdated_at(time: string) {
             self.updated_at = time;
+        },
+    }))
+    .views(self => ({
+        async load() {
+            const res = await axios.get(`${API_ROUTE}/posts/${self.id}`);
+            const content = res.data.response.content;
+            const json: SnapshotIn<typeof Root> = JSON.parse(content);
+            return json;
         }
     }));
 

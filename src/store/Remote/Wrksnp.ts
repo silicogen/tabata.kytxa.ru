@@ -1,10 +1,12 @@
-import { Instance, types } from "mobx-state-tree";
+import { Instance, SnapshotOrInstance, types } from "mobx-state-tree";
 
 export const Wrksnp = types
     .model("Wrksnp", {
         id: types.identifierNumber,
         title: types.string,
-        updated_at: types.string
+        updated_at: types.string,
+        username: types.string,
+        created_at: types.string,
     })
     .actions(self => ({
         setTitle(title: string) {
@@ -26,6 +28,9 @@ export const Wrksnps = types
         },
         rmItem(item: Instance<typeof Wrksnp>) {
             self.items.remove(item);
+        },
+        addItem(item: SnapshotOrInstance<typeof Wrksnp>) {
+            self.items.splice(0, 0, item);
         },
         toggleSelect(item: Instance<typeof Wrksnp>) {
             self.selected = self.selected === item ? undefined : item;

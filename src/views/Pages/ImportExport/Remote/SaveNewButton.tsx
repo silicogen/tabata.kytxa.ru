@@ -29,10 +29,9 @@ export const _SaveNewButton: React.FC = () => {
       });
       let message: string;
       if (res.status >= 200 && res.status < 300) {
-        // const resp = await axios.get(`${API_ROUTE}/posts/${wrksnp!.id}`);
-        // const response = resp.data.response;
-        // wrksnp?.setUpdated_at(response.updated_at)
-        // wrksnp?.setTitle(title);
+
+        res.data.response.username = res.data.response.author.username;
+        wrksnps.addItem(res.data.response)
         message = `Текущая работа успешно сохранена с именем ${title}.`
       } else {
         message = `Что-то пошло не так ${title}.`;

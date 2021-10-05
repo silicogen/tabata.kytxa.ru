@@ -8,7 +8,6 @@ import { useTheme } from "css/theme";
 
 
 const _Wrksnps = () => {
-    const [resp, setResp] = useState<any>();
     const theme = useTheme();
     const remote = useRemote();
     const wrksnps = remote.wrksnps;
@@ -16,8 +15,8 @@ const _Wrksnps = () => {
         axios.get(`${API_ROUTE}/posts`)
             .then(resp => {
                 const response = resp.data.response;
+                response.forEach((w: any) => w.username = w.author.username)
                 wrksnps.setItems(response)
-                setResp(response);
             });
     }
     useEffect(effect, []);
@@ -40,8 +39,8 @@ const _Wrksnps = () => {
                     >
                         <td>{wrksnp.id}</td>
                         <td>{wrksnp.title}</td>
-                        <td>{resp?.[i].author.username}</td>
-                        <td>{resp?.[i].created_at.substr(0, 19)}</td>
+                        <td>{wrksnp.username}</td>
+                        <td>{wrksnp.created_at.substr(0, 19)}</td>
                         <td>{wrksnp.updated_at.substr(0, 19)}</td>
                     </tr>
                 )}

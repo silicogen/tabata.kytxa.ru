@@ -45,7 +45,7 @@ export default function FileSelector({ onChange }: Props) {
         onDragOver={onDragOver}
         onDrop={onDrop}
         htmlFor="selectFileButton">
-        Выбор файла
+        Выбор файла для импорта
       </label>
     </button>
 

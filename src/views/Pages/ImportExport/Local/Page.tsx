@@ -9,14 +9,12 @@ const Page: React.FC = () => {
     async function onAfterImport() {
     }
     return <div css={css(theme.divs.commonPage)}>
-        <h2>Экспорт-импорт в локальный файл</h2>
         <section css={css(theme.sections.common)}>
-            <h3>Экспорт</h3>
-            <Export />
-        </section>
-        <section css={css(theme.sections.common)}>
-            <h3>Импорт</h3>
-            <Import onAfterImport={onAfterImport} />
+            <h2>Экспорт-импорт в локальный файл</h2>
+            <form css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}>
+                <Export />
+                <Import onAfterImport={onAfterImport} />
+            </form>
         </section>
     </div>;
 }

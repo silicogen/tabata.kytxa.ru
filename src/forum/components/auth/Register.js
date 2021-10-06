@@ -37,7 +37,7 @@ const Register = () => {
   }
 
   if (currentState.isAuthenticated) {
-    return <Redirect to='/forum' />
+    return <Redirect to='/' />
   }
 
   return (

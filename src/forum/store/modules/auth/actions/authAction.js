@@ -90,7 +90,7 @@ export const deleteUser = (id) => {
       let deleteMessage = res.data.response
       dispatch({ type: DELETE_USER_SUCCESS, payload: deleteMessage })
       window.localStorage.clear(); //update the localstorage
-      window.location.href = "/forum/"
+      window.location.href = "/"
     } catch (err) {
       dispatch({ type: DELETE_USER_ERROR, payload: err.response.data.error })
     }

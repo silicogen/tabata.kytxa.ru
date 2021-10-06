@@ -78,7 +78,7 @@ const Profile = () => {
 
   //incase someone visits the route manually
   if(!currentUserState.isAuthenticated){
-    return <Redirect to='/forum/login' />
+    return <Redirect to='/login' />
   }
 
   const submitUserAvatar = (e) => {

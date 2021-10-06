@@ -101,10 +101,10 @@ const PasswordForgot = () => {
             </form>
             <div className="mt-2" style={{ display: "flex", justifyContent: "space-between" }}>
               <div>
-                <small><Link to={`/forum/signup`}>Sign Up</Link></small>
+                <small><Link to={`/signup`}>Sign Up</Link></small>
               </div>
               <div>
-                <small><Link to={`/forum/login`}>Login</Link></small>
+                <small><Link to={`/login`}>Login</Link></small>
               </div>
             </div>
           </CardBody>

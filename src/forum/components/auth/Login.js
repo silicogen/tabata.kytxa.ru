@@ -38,7 +38,7 @@ const Login = () => {
   }
 
   if (currentState.isAuthenticated) {
-    return <Redirect to='/forum' />
+    return <Redirect to='/' />
   }
 
   return (
@@ -119,10 +119,10 @@ const Login = () => {
             </form>
             <div className="mt-2" style={{ display: "flex", justifyContent: "space-between" }}>
               <div>
-                <small><Link to={`/forum/signup`}>Sign Up</Link></small>
+                <small><Link to={`/signup`}>Sign Up</Link></small>
               </div>
               <div>
-                <small><Link to={`/forum/forgotpassword`}>Forgot Password?</Link></small>
+                <small><Link to={`/forgotpassword`}>Forgot Password?</Link></small>
               </div>
             </div>
 

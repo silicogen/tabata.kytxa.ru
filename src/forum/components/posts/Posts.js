@@ -25,7 +25,7 @@ const Posts = () => {
   let posts = postsSelector.posts.map((post) => {
     return (
       <div className="mt-2 style-card" key={post.id}>
-        <Link to={`/forum/posts/` + post.id} key={post.id}>
+        <Link to={`/posts/` + post.id} key={post.id}>
           <Post post={post} key={post.id} />
         </Link>
       </div>

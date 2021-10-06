@@ -118,7 +118,7 @@ const Register = () => {
               )}
             </form>
             <div className="mt-2">
-              <small>Have an account? <Link to={`/forum/login`}>Please login</Link></small>
+              <small>Have an account? <Link to={`/login`}>Please login</Link></small>
             </div>
           </CardBody>
         </Card>

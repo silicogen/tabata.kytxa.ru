@@ -42,7 +42,7 @@ const CreatePost = () => {
   }
 
   if (!currentState.Auth.isAuthenticated) {
-    return <Redirect to='/forum/login' />
+    return <Redirect to='/login' />
   }
   return (
     <div>

@@ -46,15 +46,15 @@ const Navigation = () => {
     logoutUser()
   }
 
-  const userProfile = isAuthenticated ? `/forum/profile/${currentState.Auth.currentUser.id}` : ""
+  const userProfile = isAuthenticated ? `/profile/${currentState.Auth.currentUser.id}` : ""
 
   const SignedInLinks = (
     <React.Fragment>
       <NavItem className="mt-2" style={{ marginRight: "15px" }}>
-        <NavLink to={`/forum/createpost`}>Create Post</NavLink>
+        <NavLink to={`/createpost`}>Create Post</NavLink>
       </NavItem>
       <NavItem className="mt-2" style={{ marginRight: "15px" }}>
-        <NavLink to={`/forum/authposts`}>My Posts</NavLink>
+        <NavLink to={`/authposts`}>My Posts</NavLink>
       </NavItem>
       <UncontrolledDropdown nav inNavbar>
         <DropdownToggle nav caret>
@@ -68,8 +68,7 @@ const Navigation = () => {
           </DropdownItem>
           <DropdownItem divider />
           <DropdownItem>
-            <NavLink onClick={logout} to={`/forum`}>Logout</NavLink>
-            {/* <a onClick={logout}>Logout</a> */}
+            <a onClick={logout}>Logout</a>
           </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
@@ -80,10 +79,10 @@ const Navigation = () => {
   const SignedOutLinks = (
     <React.Fragment>
       <NavItem style={{ marginRight: "20px" }}>
-        <Link to={`/forum/login`}>Login</Link>
+        <Link to={`/login`}>Login</Link>
       </NavItem>
       <NavItem>
-        <Link to={`/forum/signup`}>Signup</Link>
+        <Link to={`/signup`}>Signup</Link>
       </NavItem>
     </React.Fragment>
   )

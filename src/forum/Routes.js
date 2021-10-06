@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Switch, Route, useRouteMatch } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route, useRouteMatch } from 'react-router-dom';
 
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -15,24 +15,25 @@ import AuthPosts from './components/posts/AuthPosts'
 
 
 const Routes = () => {
-  let { path } = useRouteMatch();
-  // const path = "";
   return (
-    // <Router history={history}>
-    <div className="App">
-      <Switch>
-        <Route exact path={path} component={Dashboard} />
-        <Route path={`${path}/login`} component={Login} />
-        <Route path={`${path}/signup`} component={Register} />
-        <Route path={`${path}/createpost`} component={CreatePost} />
-        <Route path={`${path}/profile/:id`} component={Profile} />
-        <Route path={`${path}/forgotpassword`} component={ForgotPassword} />
-        <Route path={`${path}/resetpassword/:token`} component={ResetPassword} />
-        <Route path={`${path}/posts/:id`} component={PostDetails} />
-        <Route path={`${path}/authposts`} component={AuthPosts} />
-      </Switch>
-    </div>
-    // </Router>
+    <Router
+      basename={"/forum"}
+    >
+      <div className="App">
+        <Switch>
+          <Route exact path={`/`} component={Dashboard} />
+          <Route path={`/login`} component={Login} />
+          <Route path={`/signup`} component={Register} />
+          <Route path={`/createpost`} component={CreatePost} />
+          <Route path={`/profile/:id`} component={Profile} />
+          <Route path={`/forgotpassword`} component={ForgotPassword} />
+          <Route path={`/resetpassword/:token`} component={ResetPassword} />
+          <Route path={`/posts/:id`} component={PostDetails} />
+          <Route path={`/authposts`} component={AuthPosts} />
+
+        </Switch>
+      </div>
+    </Router>
 
   );
 }

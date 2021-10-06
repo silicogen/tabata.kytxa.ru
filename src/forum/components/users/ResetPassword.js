@@ -76,7 +76,7 @@ const PasswordReset = (props) => {
               {currentState.resetError && currentState.resetError.Invalid_token ? (
                 <span>
                   <small className="color-red">{currentState.resetError.Invalid_token}</small>
-                  <small className="ml-2"><Link to={`/forum/forgotpassword`}>here </Link></small>
+                  <small className="ml-2"><Link to={`/forgotpassword`}>here </Link></small>
                 </span>
               ) : (
                 ""

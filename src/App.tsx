@@ -3,7 +3,7 @@ import { css } from "@styled-system/css";
 
 import { useRoot } from "store/Root";
 import {
-    BrowserRouter,
+    HashRouter as Router,
     Switch,
     Route
 } from "react-router-dom";
@@ -26,7 +26,7 @@ const App: React.FC = () => {
     const root = useRoot();
     const uiStore = root.ui;
     return <div css={css(theme.layout.gridContainer)}>
-        <BrowserRouter  >
+        <Router  >
             <header
                 css={css(theme.layout.header)}>
                 <HamburgerButton />
@@ -78,7 +78,7 @@ const App: React.FC = () => {
 
                 </Switch>
             </main>
-        </BrowserRouter>
+        </Router>
     </div >
 }
 

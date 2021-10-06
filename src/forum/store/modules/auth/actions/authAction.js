@@ -27,7 +27,7 @@ export const SignOut = () => {
     setAuthorizationToken(false)
     dispatch({ type: LOGOUT_SUCCESS })
     window.localStorage.clear(); //update the localstorage
-    history.push('/forum/login');
+    // history.push('/login');
   }
 }
 
@@ -37,7 +37,7 @@ export const SignUp = (newUser) => {
     try {
       await axios.post(`${API_ROUTE}/users`, newUser);
       dispatch({ type: SIGNUP_SUCCESS })
-      history.push('/forum/login');
+      history.push('/login');
     } catch (err) {
       dispatch({ type: SIGNUP_ERROR, payload: err.response.data.error })
     }

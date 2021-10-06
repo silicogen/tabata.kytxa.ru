@@ -26,13 +26,13 @@ const AuthPosts = () => {
 
   //incase someone visits the route manually
   if (!currentState.isAuthenticated) {
-    return <Redirect to='/forum/login' />
+    return <Redirect to='/login' />
   }
 
   let authPosts = postsSelector.authPosts.map(post => {
     return (
       <div className="mt-2 style-card" key={post.id}>
-        <Link to={`/forum/posts/` + post.id} key={post.id}>
+        <Link to={`/posts/` + post.id} key={post.id}>
           <AuthPost post={post} key={post.id} />
         </Link>
       </div>
@@ -54,7 +54,7 @@ const AuthPosts = () => {
             <p className="mt-2">It seems you have not created any posts yet.</p>
             <p>Click the button the button below to create one</p>
             <div className="mt-4">
-              <Link to={`/forum/createpost`} className="btn btn-primary">Create Post</Link>
+              <Link to={`/createpost`} className="btn btn-primary">Create Post</Link>
             </div>
           </div>
         )}

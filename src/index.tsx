@@ -5,9 +5,11 @@ import Providers from 'Providers';
 import 'css/index.scss';
 
 ReactDOM.render(
-    <Providers>
-        <App />
-    </Providers>
+    <React.StrictMode>
+        <Providers>
+            <App />
+        </Providers>
+    </React.StrictMode>
     ,
     document.getElementById('root')
 )

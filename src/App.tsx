@@ -13,6 +13,8 @@ import { Page as WorkoutsPage } from 'views/Pages/Workouts';
 import { Page as ExercizesPage, DisplayPath as ExercizesDisplayPath } from 'views/Pages/Exercizes';
 import { Page as PhazesPage, DisplayPath as PhazesDisplayPath } from 'views/Pages/Phazes';
 import { ImportExport } from "views/Pages/ImportExport";
+import { LocalImportExport } from "views/Pages/ImportExport/Local"
+import { RemoteImportExport } from "views/Pages/ImportExport/Remote"
 import Goer from "views/Pages/Goer";
 import About from "views/Pages/About";
 import { App as ForumApp } from "forum";
@@ -54,9 +56,11 @@ const App: React.FC = () => {
                 <NavLink to="/workouts">Тренировки</NavLink>
                 <NavLink to="/exercizes">Упражнения</NavLink>
                 <NavLink to="/phazes">Фазы</NavLink>
-                <NavLink to="/importExport">Хранилище</NavLink>
+                <NavLink to="/file">Файл</NavLink>
+                <NavLink to="/forum">Сервер</NavLink>
+                <NavLink to="/server">Сервер1</NavLink>
                 <NavLink to="/about">Что это?</NavLink>
-                <NavLink to="/forum">Форум</NavLink>
+
             </nav>
 
             <main onClick={uiStore.collapseNavMenu}
@@ -67,9 +71,11 @@ const App: React.FC = () => {
                     <Route path="/workouts" component={WorkoutsPage} />
                     <Route path="/exercizes" component={ExercizesPage} />
                     <Route path="/phazes" component={PhazesPage} />
-                    <Route path="/importExport" component={ImportExport} />
-                    <Route path="/about" component={About} />
+                    <Route path="/file" component={LocalImportExport} />
                     <Route path="/forum" component={ForumApp} />
+                    <Route path="/server" component={RemoteImportExport} />
+                    <Route path="/about" component={About} />
+
                 </Switch>
             </main>
         </BrowserRouter>

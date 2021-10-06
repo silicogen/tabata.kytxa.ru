@@ -39,7 +39,7 @@ const Post = ({ post }) => {
           </span>
         </CardTitle>
         <CardTitle>{post.title}</CardTitle>
-        <CardText>{post.content}</CardText>
+        {/* <CardText>{post.content}</CardText> */}
         <div className="style-fav">
           <>
             <Likes postID={post.id} />

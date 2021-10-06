@@ -16,21 +16,22 @@ import AuthPosts from './components/posts/AuthPosts'
 
 const Routes = () => {
   let { path } = useRouteMatch();
+  // const path = "";
   return (
     // <Router history={history}>
-      <div className="App">
-        <Switch>
-          <Route exact path={path} component={Dashboard} />
-          <Route path={`${path}/login`} component={Login} />
-          <Route path={`${path}/signup`} component={Register} />
-          <Route path={`${path}/createpost`} component={CreatePost} />
-          <Route path={`${path}/profile/:id`} component={Profile} />
-          <Route path={`${path}/forgotpassword`} component={ForgotPassword} />
-          <Route path={`${path}/resetpassword/:token`} component={ResetPassword} />
-          <Route path={`${path}/posts/:id`} component={PostDetails} />
-          <Route path={`${path}/authposts`} component={AuthPosts} />
-        </Switch>
-      </div>
+    <div className="App">
+      <Switch>
+        <Route exact path={path} component={Dashboard} />
+        <Route path={`${path}/login`} component={Login} />
+        <Route path={`${path}/signup`} component={Register} />
+        <Route path={`${path}/createpost`} component={CreatePost} />
+        <Route path={`${path}/profile/:id`} component={Profile} />
+        <Route path={`${path}/forgotpassword`} component={ForgotPassword} />
+        <Route path={`${path}/resetpassword/:token`} component={ResetPassword} />
+        <Route path={`${path}/posts/:id`} component={PostDetails} />
+        <Route path={`${path}/authposts`} component={AuthPosts} />
+      </Switch>
+    </div>
     // </Router>
 
   );

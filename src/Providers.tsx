@@ -9,8 +9,8 @@ import { persist } from 'mst-persist';
 import { observer } from 'mobx-react-lite';
 import Goer from 'store/Goer';
 import { useAsync } from "react-async";
-import forumStore from 'forum/store/index';
-import { Provider as ReduxProvider } from "react-redux"
+// import forumStore from 'forum/store/index';
+// import { Provider as ReduxProvider } from "react-redux"
 
 
 async function getRoot() {
@@ -30,11 +30,11 @@ const Providers: React.FC = ({ children }) => {
   if (error) throw error;
   if (data) return <>
     <MobxProvider root={data} remote={remote}>
-      <ReduxProvider store={forumStore}>
+      {/* <ReduxProvider store={forumStore}> */}
         <ThemeProvider theme={theme}>
           {children}
         </ThemeProvider>
-      </ReduxProvider>
+      {/* </ReduxProvider> */}
     </MobxProvider>
   </>;
   return <h1>Whoops!!! Something defaul has happend!!! It was supposed imposible!!!</h1>

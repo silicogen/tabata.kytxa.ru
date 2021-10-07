@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { css } from "@styled-system/css";
 import { getSnapshot, applySnapshot } from "mobx-state-tree";
 import { Wrksnps } from "./Wrksnps";
+import { InOut } from "./InOut"
 import { useTheme } from "css/theme";
 import { useRoot } from "store/Root";
 import { useRemote } from "store/Remote";
@@ -36,8 +37,9 @@ const _Page: React.FC = () => {
         const json = JSON.parse(content);
         applySnapshot(root, json);
     }
-    
+
     return <div css={css(theme.divs.commonPage)}>
+        <InOut />
         <section css={css(theme.sections.common)}>
             <h2>Экспорт-импорт на на удалённом сервере</h2>
             <form css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}>
@@ -79,7 +81,7 @@ const _Page: React.FC = () => {
                     >Удалить</button>
                 </div>
             </form>
-            <Wrksnps css={css({m:"6rem"})} />
+            <Wrksnps css={css({ m: "6rem" })} />
         </section>
     </div>;
 }

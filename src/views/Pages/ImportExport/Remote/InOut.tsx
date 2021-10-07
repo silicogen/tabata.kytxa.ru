@@ -1,23 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { css } from "@styled-system/css";
 import { useTheme } from "css/theme";
 import { useRemote } from "store/Remote";
 import { observer } from "mobx-react-lite";
 
 const _InOut: React.FC = () => {
+    const [credentials, setCredentials] = useState({ email: '', password: '' });
     const theme = useTheme();
     const inOut = useRemote().inOut;
 
-    const emailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        inOut.setEmail(e.target.value)
+    const credentialsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
-    const passwordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        inOut.setPassword(e.target.value)
+
+    const logIn = () => {
+        inOut.logIn(credentials);
     }
+
     return <section css={css(theme.sections.common)}>
         <h2>Вход-выход</h2>
         <form css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}
-            onSubmit={inOut.logIn}
+            onSubmit={logIn}
         >
             <div css={css(theme.divs.params)}>
                 <label
@@ -27,9 +30,10 @@ const _InOut: React.FC = () => {
                 </label>
                 <input
                     type="email"
+                    name="email"
                     placeholder="Введите email"
-                    onChange={emailChange}
-                    value={inOut.email}
+                    onChange={credentialsChange}
+                    value={credentials.email}
                     id="loginInput"
                     css={css(theme.inputs.name)}
                 />
@@ -40,9 +44,10 @@ const _InOut: React.FC = () => {
                 </label>
                 <input
                     type="password"
+                    name="password"
                     placeholder="Введите пароль"
-                    onChange={passwordChange}
-                    value={inOut.password}
+                    onChange={credentialsChange}
+                    value={credentials.password}
                     id="passwordInput"
                     css={css(theme.inputs.name)}
                 />
@@ -52,6 +57,11 @@ const _InOut: React.FC = () => {
                     type="submit"
                     css={css(theme.buttons.primary)}
                 >Войти </button>
+
+                <button
+                    css={css(theme.buttons.primary)}
+                    onClick={inOut.logOut}
+                >Выйти </button>
 
             </div>
         </form>

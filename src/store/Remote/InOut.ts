@@ -4,24 +4,32 @@ import { types } from "mobx-state-tree";
 
 export const InOut = types
     .model("InOut", {
-        email: "",
-        password: "",
-        updated_at: "",
-        username: "",
-        created_at: "",
+
+        currentUser: types.optional(types.model("currentUser", {}), {}),
+        isAuthenticated: false,
+        // currentUser: action.payload,
+        // isAuthenticated: !isEmpty(action.payload),
     })
     .actions(self => ({
-        setEmail(email: string) {
-            self.email = email;
+        async logIn(credentials: { email: string, password: string }) {
+            const res = await axios.post(`${API_ROUTE}/login`, credentials)
+            let userData = res.data.response
+            localStorage.setItem("token", userData.token)
+            localStorage.setItem('user_data', JSON.stringify(userData));
+            setAuthorizationToken(userData.token)
         },
-        setPassword(password: string) {
-            self.password = password;
-        },
-        setUpdated_at(time: string) {
-            self.updated_at = time;
-        },
-        logIn() {
-
+        async logOut() {
+            localStorage.removeItem("token")
+            setAuthorizationToken(false)
+            window.localStorage.clear(); //update the localstorage
         }
-
     }));
+
+function setAuthorizationToken(token: boolean | string) {
+    if (token) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    } else {
+        delete axios.defaults.headers.common['Authorization'];
+    }
+}
+export { setAuthorizationToken };

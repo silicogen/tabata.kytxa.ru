@@ -7,6 +7,7 @@ import { useTheme } from "css/theme";
 import { useRoot } from "store/Root";
 import { useRemote } from "store/Remote";
 import { observer } from "mobx-react-lite";
+import { setAuthorizationToken } from "store/Remote/InOut";
 
 const _Page: React.FC = () => {
     const theme = useTheme();
@@ -15,6 +16,16 @@ const _Page: React.FC = () => {
     const wrksnps = remote.wrksnps;
     const wrksnp = wrksnps.selected;
     const inputTitleRef = useRef<HTMLInputElement>(null);
+
+    if (localStorage.token) {
+        setAuthorizationToken(localStorage.token)
+        const user_data = localStorage.getItem('user_data');
+        let userData = user_data == null ? null : JSON.parse(user_data);
+        remote.inOut.setCurrentUser(userData);
+        // store.dispatch({ type: LOGIN_SUCCESS, payload: userData }) //provided he has a valid token 
+    }
+
+
     if (inputTitleRef?.current) {
         inputTitleRef.current.value = wrksnp?.title ?? "";
     }

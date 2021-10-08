@@ -20,7 +20,7 @@ const _InOut: React.FC = () => {
 
     return <section css={css(theme.sections.common)}>
         <h2>Вход-выход</h2>
-        {!!inOut.currentUser ?
+        {inOut.isAuthenticated ?
             <button
                 css={css(theme.buttons.primary)}
                 onClick={inOut.logOut}
@@ -58,7 +58,12 @@ const _InOut: React.FC = () => {
                         id="passwordInput"
                         css={css(theme.inputs.name)}
                     />
+
                 </div>
+                {inOut.incorrectPasswordOrEmail ?
+                    <small css={css({ color: "red" })}>Не верный логин или пароль</small>
+                    : undefined}
+
                 <div css={css({ display: "flex", gap: "1rem" })}>
                     <button
                         type="submit"

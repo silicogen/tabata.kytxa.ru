@@ -51,50 +51,51 @@ const _Page: React.FC = () => {
 
     return <div css={css(theme.divs.commonPage)}>
         <InOut />
-        <section css={css(theme.sections.common)}>
-            <h2>Экспорт-импорт на на удалённом сервере</h2>
-            <form css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}>
-                <button
-                    css={css(theme.buttons.primary)}
-                    onClick={saveNew}
-                >Сохранить в новое хранилище</button>
-                <div css={css(theme.divs.params)}>
-                    <label
-                        htmlFor="nameInput"
-                        style={{ justifySelf: "end" }}>
-                        Наименование:
-                    </label>
-                    <input
-                        ref={inputTitleRef}
-                        id="nameInput"
-                        disabled={!wrksnp}
-                        css={css(theme.inputs.name)}
-                    />
+        {!!remote.inOut.currentUser ?
+            <section css={css(theme.sections.common)}>
+                <h2>Экспорт-импорт на на удалённом сервере</h2>
+                <form css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}>
+                    <button
+                        css={css(theme.buttons.primary)}
+                        onClick={saveNew}
+                    >Сохранить в новое хранилище</button>
+                    <div css={css(theme.divs.params)}>
+                        <label
+                            htmlFor="nameInput"
+                            style={{ justifySelf: "end" }}>
+                            Наименование:
+                        </label>
+                        <input
+                            ref={inputTitleRef}
+                            id="nameInput"
+                            disabled={!wrksnp}
+                            css={css(theme.inputs.name)}
+                        />
 
-                </div>
-                <div css={css({ display: "flex", gap: "1rem" })}>
-                    <button
-                        css={css(theme.buttons.primary)}
-                        disabled={!wrksnp}
-                        onClick={save}
-                    >Сохранить </button>
-                    <button
-                        css={css(theme.buttons.primary)}
-                        disabled={!wrksnp}
-                        onClick={load}
-                    >
-                        Загрузить
-                    </button>
-                    <button
-                        css={css(theme.buttons.primary)}
-                        disabled={!wrksnp}
-                        onClick={wrksnps?.delete}
-                    >Удалить</button>
-                </div>
-            </form>
-            <Wrksnps css={css({ m: "6rem" })} />
-        </section>
-    </div>;
+                    </div>
+                    <div css={css({ display: "flex", gap: "1rem" })}>
+                        <button
+                            css={css(theme.buttons.primary)}
+                            disabled={!wrksnp}
+                            onClick={save}
+                        >Сохранить </button>
+                        <button
+                            css={css(theme.buttons.primary)}
+                            disabled={!wrksnp}
+                            onClick={load}
+                        >
+                            Загрузить
+                        </button>
+                        <button
+                            css={css(theme.buttons.primary)}
+                            disabled={!wrksnp}
+                            onClick={wrksnps?.delete}
+                        >Удалить</button>
+                    </div>
+                </form>
+                <Wrksnps css={css({ m: "6rem" })} />
+            </section> : null}
+    </div>
 }
 
 export const Page = observer(_Page);

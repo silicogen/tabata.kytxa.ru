@@ -31,7 +31,7 @@ export const InOut = types
         async logIn(credentials: { email: string, password: string }) {
             try {
                 const res = await axios.post(`${API_ROUTE}/login`, credentials)
-                let userData = res.data.response
+                const userData = res.data.response
                 localStorage.setItem("token", userData.token)
                 localStorage.setItem('user_data', JSON.stringify(userData));
                 setAuthorizationToken(userData.token);

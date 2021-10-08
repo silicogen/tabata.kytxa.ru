@@ -1,5 +1,3 @@
-import API_ROUTE from "forum/apiRoute";
-import axios from 'axios'
 import { useEffect } from "react";
 import { useRemote } from "store/Remote";
 import { observer } from "mobx-react";

@@ -13,5 +13,3 @@ export const Remote = types
 export const useRemote = () => React
     .useContext(MobXProviderContext)
     .remote as Instance<typeof Remote>;
-
-export default Remote;

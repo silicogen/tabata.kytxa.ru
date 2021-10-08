@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { Provider as MobxProvider } from 'mobx-react';
 import theme from "css/theme";
 import Root from "store/Root";
-import Remote from "store/Remote"
+import {Remote} from "store/Remote"
 import { persist } from 'mst-persist';
 import { observer } from 'mobx-react-lite';
 import Goer from 'store/Goer';

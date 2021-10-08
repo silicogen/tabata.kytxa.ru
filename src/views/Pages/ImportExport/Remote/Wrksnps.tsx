@@ -11,17 +11,9 @@ const _Wrksnps = () => {
     const theme = useTheme();
     const remote = useRemote();
     const wrksnps = remote.wrksnps;
-    const effect = () => {
-        axios.get(`${API_ROUTE}/posts`)
-            .then(resp => {
-                const response = resp.data.response;
-                response.forEach((w: any) => w.username = w.author.username)
-                wrksnps.setItems(response)
-            });
-    }
-    useEffect(effect, []);
+    useEffect(wrksnps.fetch, []);
     return <table>
-        <caption css={css({ captionSide: "top", fontSize: "1.5rem" ,pb:"0"})}>
+        <caption css={css({ captionSide: "top", fontSize: "1.5rem", pb: "0" })}>
             Хранилища
         </caption>
         <thead>

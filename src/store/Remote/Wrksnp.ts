@@ -1,6 +1,7 @@
 import axios from "axios";
 import API_ROUTE from "forum/apiRoute";
-import { Instance, SnapshotOrInstance, types } from "mobx-state-tree";
+import { getParentOfType, Instance, SnapshotOrInstance, types } from "mobx-state-tree";
+import { Remote } from ".";
 
 export const Wrksnp = types
     .model("Wrksnp", {
@@ -56,6 +57,16 @@ export const Wrksnps = types
         selected: types.safeReference(Wrksnp),
     })
     .actions(self => ({
+        fetch() {
+            const remote = getParentOfType(self, Remote);
+            axios.get(`${API_ROUTE}/user_posts/${remote.inOut.currentUser?.id}`)
+                // axios.get(`${API_ROUTE}/posts`)
+                .then(resp => {
+                    const response = resp.data.response;
+                    response.forEach((w: any) => w.username = w.author.username)
+                    this.setItems(response)
+                });
+        },
         setItems(arr: any[]) {
             self.items.replace(arr);
         },

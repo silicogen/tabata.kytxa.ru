@@ -10,6 +10,7 @@ const _InOut: React.FC = () => {
     const inOut = useRemote().inOut;
 
     const credentialsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        inOut.setIncorrectPasswordOrEmail(false);
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
 
@@ -67,6 +68,7 @@ const _InOut: React.FC = () => {
                 <div css={css({ display: "flex", gap: "1rem" })}>
                     <button
                         type="submit"
+                        disabled={!credentials.email || !credentials.password}
                         css={css(theme.buttons.primary)}
                     >Войти </button>
 

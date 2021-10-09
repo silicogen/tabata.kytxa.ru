@@ -18,29 +18,59 @@ export const Wrksnp = types
         setUpdated_at(time: string) {
             self.updated_at = time;
         },
-        async save(snapStr: string, title: string) {
+        async saveName(title: string) {
+            let message: string;
             try {
+                const j =0;
                 const res = await axios.put(`${API_ROUTE}/posts/${self!.id}`, {
-                    content: snapStr,
                     title
                 });
-                let message: string;
+
                 if (res.status >= 200 && res.status < 300) {
                     const resp = await axios.get(`${API_ROUTE}/posts/${self!.id}`);
                     const response = resp.data.response;
                     this?.setUpdated_at(response.updated_at)
                     this?.setTitle(title);
-                    message = `Текущая работа успешно сохранена с именем ${title}.`
+                    message = `Состоянию присвоено имя ${title}.`;
                 } else {
                     message = `Что-то пошло не так ${title}.`;
                 }
-                window.alert(`${message}
-               status: ${res.status}, statusText: ${res.statusText}`);
+                message = `${message}
+                status: ${res.status}, statusText: ${res.statusText}`;
             } catch (ex) {
-                window.alert(
-                    `Не удалось сохранить работу на сервере.
-                ${ex}`)
+                const exeption = ex;
+                message = `Не удалось переименовать состояние на сервере.
+                ${exeption}`;
             }
+            window.alert(message);
+        },
+        async saveTo(snapStr: string, title: string) {
+            let message: string;
+            const j =0;
+            try {
+                const res = await axios.put(`${API_ROUTE}/posts/${self!.id}`, {
+                    content: snapStr,
+                    title
+                });
+
+                if (res.status >= 200 && res.status < 300) {
+                    const i =0;
+                    const resp = await axios.get(`${API_ROUTE}/posts/${self!.id}`);
+                    const response = resp.data.response;
+                    this?.setUpdated_at(response.updated_at)
+                    this?.setTitle(title);
+                    message = `Текущая состояние успешно сохранено с именем ${title}.`;
+                } else {
+                    message = `Что-то пошло не так ${title}.`;
+                }
+                message = `${message}
+                status: ${res.status}, statusText: ${res.statusText}`;
+
+            } catch (ex) {
+                message = `Не удалось сохранить текущее состояние на сервере.
+                ${ex}`;
+            }
+            window.alert(message);
         }
     }))
     .views(self => ({

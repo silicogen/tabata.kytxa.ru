@@ -30,11 +30,15 @@ const _Page: React.FC = () => {
         wrksnps.saveNew(snapStr);
     }
 
-    const save = () => {
+    const saveName = () => {
+        const title = inputTitleRef?.current?.value ?? "";
+        wrksnp!.saveName(title);
+    }
+    const saveTo = () => {
         const snap = getSnapshot(root);
         const snapStr = JSON.stringify(snap, undefined, 4);
         const title = inputTitleRef?.current?.value ?? "";
-        wrksnp!.save(snapStr, title);
+        wrksnp!.saveTo(snapStr, title);
     }
 
     const load = async () => {
@@ -71,8 +75,13 @@ const _Page: React.FC = () => {
                         <button
                             css={css(theme.buttons.primary)}
                             disabled={!wrksnp}
-                            onClick={save}
-                        >Сохранить </button>
+                            onClick={saveName}
+                        >Переименовать </button>
+                        <button
+                            css={css(theme.buttons.primary)}
+                            disabled={!wrksnp}
+                            onClick={saveTo}
+                        >Сохранить текущее состояние </button>
                         <button
                             css={css(theme.buttons.primary)}
                             disabled={!wrksnp}

@@ -1,25 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { css } from "@styled-system/css";
-import { getSnapshot, applySnapshot, onSnapshot } from "mobx-state-tree";
-import { Wrksnps } from "./Wrksnps";
-import { InOut } from "./InOut"
+import { onSnapshot } from "mobx-state-tree";
 import { useTheme } from "css/theme";
-import { useRoot } from "store/Root";
 import { useRemote } from "store/Remote";
 import { observer } from "mobx-react-lite";
-import { getSavedCurrentUser } from "auth/index";
 
 const _RenameWrksnp: React.FC = () => {
     const theme = useTheme();
-    const root = useRoot();
     const remote = useRemote();
     const wrksnps = remote.wrksnps;
-    const wrksnp = wrksnps.selected;
-    const inputTitleRef = useRef<HTMLInputElement>(null);
     const [title, setTitle] = useState<string>(wrksnps.selected?.title ?? "");
-
-    const savedCurrentUser = getSavedCurrentUser();
-    remote.inOut.setCurrentUser(savedCurrentUser);
 
     useEffect(() => {
         return onSnapshot(wrksnps, () => {
@@ -39,23 +29,20 @@ const _RenameWrksnp: React.FC = () => {
     const isDisabled = () => wrksnps.selected == undefined || title == wrksnps.selected?.title;
 
     return <form
-        css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}
+        css={css({ display: "flex", flexFlow: "row wrap", gap: "1rem" })}
         onSubmit={onSubmit}
     >
-        <div css={css(theme.divs.params)}>
-            <label
-                htmlFor="nameInput"
-                style={{ justifySelf: "end" }}>
-                Наименование:
-            </label>
-            <input
-                id="nameInput"
-                css={css(theme.inputs.name)}
-                onChange={onChange}
-                value={title}
-            />
-        </div>
-
+        <label
+            htmlFor="nameInput"
+            style={{ justifySelf: "end" }}>
+            Наименование:
+        </label>
+        <input
+            id="nameInput"
+            css={css(theme.inputs.name)}
+            onChange={onChange}
+            value={title}
+        />
         <input
             type="submit"
             css={css(theme.buttons.primary)}

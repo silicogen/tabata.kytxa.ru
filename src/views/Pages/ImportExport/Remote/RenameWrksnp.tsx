@@ -26,16 +26,17 @@ const _RenameWrksnp: React.FC = () => {
         wrksnps.selected?.saveName(title);
     };
 
-    const nameInputIsDisabled = () => wrksnps.selected == undefined || title == wrksnps.selected?.title;
-    const submitIsDisabled = () => wrksnps.selected == undefined;
+    const submitIsDisabled = () => wrksnps.selected == undefined || title == wrksnps.selected?.title;
+    const nameInputIsDisabled = () => wrksnps.selected == undefined;
 
     return <form
-        css={css({ display: "flex", flexFlow: "row wrap", gap: "1rem" })}
+        css={css({ display: "flex", flexFlow: "row wrap", gap: "1rem", alignItems: "center" })}
         onSubmit={onSubmit}
     >
         <label
             htmlFor="nameInput"
-            style={{ justifySelf: "end" }}>
+            css={css(theme.fieldsets)}
+        >
             Наименование:
         </label>
         <input

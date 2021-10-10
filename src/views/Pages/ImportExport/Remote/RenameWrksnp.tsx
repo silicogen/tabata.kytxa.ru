@@ -26,7 +26,8 @@ const _RenameWrksnp: React.FC = () => {
         wrksnps.selected?.saveName(title);
     };
 
-    const isDisabled = () => wrksnps.selected == undefined || title == wrksnps.selected?.title;
+    const nameInputIsDisabled = () => wrksnps.selected == undefined || title == wrksnps.selected?.title;
+    const submitIsDisabled = () => wrksnps.selected == undefined;
 
     return <form
         css={css({ display: "flex", flexFlow: "row wrap", gap: "1rem" })}
@@ -40,13 +41,14 @@ const _RenameWrksnp: React.FC = () => {
         <input
             id="nameInput"
             css={css(theme.inputs.name)}
+            disabled={nameInputIsDisabled()}
             onChange={onChange}
             value={title}
         />
         <input
             type="submit"
             css={css(theme.buttons.primary)}
-            disabled={isDisabled()}
+            disabled={submitIsDisabled()}
             value="Переименовать"
         />
     </form>

@@ -178,9 +178,12 @@ const theme = {
     list: {
       gridArea: "list",
       p: "0 1rem",
-      bg: colors.main
+      bg: colors.main 
     } as SystemStyleObject,
     common: {
+      display: "flex", 
+      flexFlow: "column", 
+      gap: "1rem",
       p: "0 1rem",
       bg: colors.main
     } as SystemStyleObject,

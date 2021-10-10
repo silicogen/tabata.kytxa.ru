@@ -20,8 +20,8 @@ const _Page: React.FC = () => {
         {remote.inOut.isAuthenticated &&
             <section css={css(theme.sections.common)}>
                 <h2>Экспорт-импорт на на удалённом сервере</h2>
-                <RenameWrksnp />
                 <CRUD />
+                <RenameWrksnp />
                 <Wrksnps />
             </section>}
     </div>

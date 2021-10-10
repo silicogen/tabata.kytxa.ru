@@ -22,10 +22,13 @@ const _InOut: React.FC = () => {
     return <section css={css(theme.sections.common)}>
         <h2>Вход-выход</h2>
         {inOut.isAuthenticated ?
-            <button
-                css={css(theme.buttons.primary)}
-                onClick={inOut.logOut}
-            >Выйти </button> :
+            <form>
+                <button
+                    css={css(theme.buttons.primary)}
+                    onClick={inOut.logOut}
+                >Выйти </button>
+            </form>
+            :
             <form
                 css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}
                 onSubmit={logIn}

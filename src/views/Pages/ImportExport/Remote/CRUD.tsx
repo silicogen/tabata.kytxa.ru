@@ -35,7 +35,7 @@ const _CRUD: React.FC = () => {
         applySnapshot(root, json);
     }
 
-    return <form css={css({ display: "flex", gap: "1rem" })}>
+    return <form css={css({ display: "flex", flexFlow: "row wrap", gap: "1rem" })}>
         <button
             css={css(theme.buttons.primary)}
             onClick={saveNew}
@@ -45,13 +45,13 @@ const _CRUD: React.FC = () => {
             css={css(theme.buttons.primary)}
             disabled={!wrksnp}
             onClick={saveTo}
-        >Сохранить</button>
+        >Сохранить в</button>
 
         <button
             css={css(theme.buttons.primary)}
             disabled={!wrksnp}
             onClick={load}
-        >Загрузить</button>
+        >Загрузить из</button>
 
         <button
             css={css(theme.buttons.primary)}

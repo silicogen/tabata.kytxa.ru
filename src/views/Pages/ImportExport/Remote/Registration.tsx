@@ -17,7 +17,10 @@ const _Registration: React.FC = () => {
 
     const register = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        inOut.register(credentials);
+        inOut.register(credentials)
+            .then(message => {
+                alert(message)
+            });
     }
 
     return <section css={css(theme.sections.common)}>
@@ -27,7 +30,12 @@ const _Registration: React.FC = () => {
                 <button
                     css={css(theme.buttons.primary)}
                     onClick={inOut.logOut}
-                >Выйти </button>
+                >Выйти
+                </button>
+                <button
+                    css={css(theme.buttons.primary)}
+                    onClick={inOut.logOut}
+                >Выйти 10</button>
             </form>
             :
             <form

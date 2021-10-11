@@ -3,6 +3,8 @@ import API_ROUTE from "forum/apiRoute";
 import { SnapshotOrInstance, types } from "mobx-state-tree";
 import { CurrentUser } from "./CurrentUser";
 import { setAuthorizationToken } from "auth/index";
+import { ThemeConsumer } from "styled-components";
+import { jsonStr } from "utils";
 
 const initState = {
     isAuthenticated: false,
@@ -46,31 +48,34 @@ export const InOut = types
                 window.alert(JSON.stringify(err?.response?.data?.error));
             }
         },
-        async register(credentials: { username: string, email: string, password: string }) {
-            let message: string;
+
+        async register(
+            credentials: {
+                username: string,
+                email: string,
+                password: string
+            }): Promise<string> {
             try {
                 const axiRes = await axios.post(`${API_ROUTE}/users`, credentials);
                 const res = axiRes.data.response;
                 if (axiRes.data.status == 201) {
-                    message = `Пользователь с именем ${res.username} и почтой ${res.email} успешно создан.`
+                    return `Пользователь с именем ${res.username} и почтой ${res.email} успешно создан.`;
                 } else {
-                    message = `Создание пользователя выполнено без возникновения исключительнной ситуации,
-                    но всё-же что-то пошло не так:
-                    ${JSON.stringify(axiRes)}`;
+                    return `Создание пользователя выполнено без возникновения исключительнной ситуации, но всё-же что-то пошло не так, поскольку статус не равен 201: ${jsonStr(axiRes)}`;
                 }
             } catch (ex) {
                 if (axios.isAxiosError(ex)) {
-                    message = `AxiosError: ${JSON.stringify(ex.response?.data, undefined, 4)}`;
+                    return `Axios error response data: ${jsonStr(ex.response?.data)}`;
                 }
                 else {
-                    message = `Some Error: ${JSON.stringify(ex)}`;
+                    return `Some Error: ${jsonStr(ex)}`;
                 }
             }
-            alert(message);
         },
+
         async logOut() {
             localStorage.removeItem("token")
-            localStorage.removeItem('user_data');
+            localStorage.removeItem('user_data'); JSON.stringify
             setAuthorizationToken(undefined)
             this.setCurrentUser(undefined);
         }

@@ -25,84 +25,67 @@ const _Registration: React.FC = () => {
 
     return <section css={css(theme.sections.common)}>
         <h2>Регистрация</h2>
-        {inOut.isAuthenticated ?
-            <form>
+        <form
+            css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}
+            onSubmit={register}
+        >
+            <div css={css(theme.divs.params)}>
+                <label
+                    htmlFor="userNameInput"
+                    style={{ justifySelf: "end" }}>
+                    Имя:
+                </label>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Введите ник пользователя"
+                    onChange={credentialsChange}
+                    value={credentials.username}
+                    id="userNameInput"
+                    css={css(theme.inputs.name)}
+                />
+                <label
+                    htmlFor="loginInput"
+                    style={{ justifySelf: "end" }}>
+                    Логин:
+                </label>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Введите email"
+                    onChange={credentialsChange}
+                    value={credentials.email}
+                    id="loginInput"
+                    css={css(theme.inputs.name)}
+                />
+                <label
+                    htmlFor="passwordInput"
+                    style={{ justifySelf: "end" }}>
+                    Пароль:
+                </label>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Введите пароль"
+                    onChange={credentialsChange}
+                    value={credentials.password}
+                    id="passwordInput"
+                    css={css(theme.inputs.name)}
+                />
+
+            </div>
+            {inOut.incorrectPasswordOrEmail ?
+                <small css={css({ color: "red" })}>Не верный логин или пароль</small>
+                : undefined}
+
+            <div css={css({ display: "flex", gap: "3rem", alignItems: "center" })}>
                 <button
+                    type="submit"
+                    disabled={!credentials.email || !credentials.password}
                     css={css(theme.buttons.primary)}
-                    onClick={inOut.logOut}
-                >Выйти
-                </button>
-                <button
-                    css={css(theme.buttons.primary)}
-                    onClick={inOut.logOut}
-                >Выйти 10</button>
-            </form>
-            :
-            <form
-                css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}
-                onSubmit={register}
-            >
-                <div css={css(theme.divs.params)}>
-                    <label
-                        htmlFor="userNameInput"
-                        style={{ justifySelf: "end" }}>
-                        Имя:
-                    </label>
-                    <input
-                        type="text"
-                        name="username"
-                        placeholder="Введите ник пользователя"
-                        onChange={credentialsChange}
-                        value={credentials.username}
-                        id="userNameInput"
-                        css={css(theme.inputs.name)}
-                    />
-                    <label
-                        htmlFor="loginInput"
-                        style={{ justifySelf: "end" }}>
-                        Логин:
-                    </label>
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Введите email"
-                        onChange={credentialsChange}
-                        value={credentials.email}
-                        id="loginInput"
-                        css={css(theme.inputs.name)}
-                    />
-                    <label
-                        htmlFor="passwordInput"
-                        style={{ justifySelf: "end" }}>
-                        Пароль:
-                    </label>
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Введите пароль"
-                        onChange={credentialsChange}
-                        value={credentials.password}
-                        id="passwordInput"
-                        css={css(theme.inputs.name)}
-                    />
-
-                </div>
-                {inOut.incorrectPasswordOrEmail ?
-                    <small css={css({ color: "red" })}>Не верный логин или пароль</small>
-                    : undefined}
-
-                <div css={css({ display: "flex", gap: "3rem", alignItems: "center" })}>
-                    <button
-                        type="submit"
-                        disabled={!credentials.email || !credentials.password}
-                        css={css(theme.buttons.primary)}
-                    >Создать пользователя </button>
-                    <NavLink to="/login" css={css(theme.navLinks.pageNavLink)}>Войти</NavLink>
-                </div>
-            </form>
-        }
-
-
+                >Создать пользователя </button>
+            </div>
+        </form>
     </section>;
 }
 

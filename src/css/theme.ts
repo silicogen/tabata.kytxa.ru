@@ -71,7 +71,7 @@ const theme = {
       display: 'flex',
       flexFlow: 'row',
       alignItems: 'center',
-
+      justifyContent: "space-between",
       padding: '0px 10px',
       borderRadius: '0  0 0 20px',
       fontSize: '1.1rem',
@@ -99,7 +99,7 @@ const theme = {
 
   },
   navLinks: {
-    nav: {
+    menuNavLink: {
       backgroundImage: backgroundImages.navAndHeader,
       color: 'rgba(255, 255, 255, 1)',
       height: '3em',
@@ -118,7 +118,18 @@ const theme = {
       '&:hover': {
         textDecoration: 'underline'
       }
-
+    },
+    navLink: {
+      color: 'rgba(255, 255, 255, 1)',
+      fontSize: '1.1rem',
+      textDecoration: 'none',
+      "&.active": {
+        fontWeight: 'bolder',
+        color: 'orange',
+      },
+      '&:hover': {
+        textDecoration: 'underline'
+      }
     }
   },
   divs: {
@@ -178,11 +189,11 @@ const theme = {
     list: {
       gridArea: "list",
       p: "0 1rem",
-      bg: colors.main 
+      bg: colors.main
     } as SystemStyleObject,
     common: {
-      display: "flex", 
-      flexFlow: "column", 
+      display: "flex",
+      flexFlow: "column",
       gap: "1rem",
       p: "0 1rem",
       bg: colors.main
@@ -201,7 +212,7 @@ const theme = {
       borderBottom: "1px solid",
       fontSize: fontSizes.input,
       outline: "none",
-color:"red",
+      color: "red",
       bg: colors.button,
       borderRadius: "0.4rem",
 

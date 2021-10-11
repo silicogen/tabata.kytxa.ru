@@ -69,7 +69,7 @@ const _InOut: React.FC = () => {
                     <small css={css({ color: "red" })}>Не верный логин или пароль</small>
                     : undefined}
 
-                <div css={css({ display: "flex", gap: "3rem", alignItems:"center" })}>
+                <div css={css({ display: "flex", gap: "3rem", alignItems: "center" })}>
                     <button
                         type="submit"
                         disabled={!credentials.email || !credentials.password}

@@ -21,13 +21,13 @@ const _InOut: React.FC = () => {
     }
 
     return <section css={css(theme.sections.common)}>
-        <h2>Вход-выход</h2>
+        <h2>Вход-выход1</h2>
         {inOut.isAuthenticated ?
             <form>
                 <button
                     css={css(theme.buttons.primary)}
                     onClick={inOut.logOut}
-                >Выйти </button>
+                >Выйти1</button>
             </form>
             :
             <form

@@ -12,8 +12,7 @@ const _Page: React.FC = () => {
     const theme = useTheme();
     const remote = useRemote();
 
-    const savedCurrentUser = getSavedCurrentUser();
-    remote.inOut.setCurrentUser(savedCurrentUser);
+
 
     return <div css={css(theme.divs.commonPage)}>
         <InOut />

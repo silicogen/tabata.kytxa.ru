@@ -21,13 +21,22 @@ const _InOut: React.FC = () => {
     }
 
     return <section css={css(theme.sections.common)}>
-        <h2>Вход-выход1</h2>
+        <h2>Вход-выход</h2>
         {inOut.isAuthenticated ?
-            <form>
+            <form
+                css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}
+            >
+                <span>Выполнен вход на сервер. Пользователь: {inOut.currentUser?.username}, почта: {inOut.currentUser?.email}.</span>
                 <button
                     css={css(theme.buttons.primary)}
-                    onClick={inOut.logOut}
-                >Выйти1</button>
+                    onClick={() => inOut.change({} as any)}
+                >Редактировать пользователя {inOut.currentUser?.username}
+                </button>
+                <button
+                    css={css(theme.buttons.primary)}
+                    onClick={inOut.delete}
+                >Удалить пользователя {inOut.currentUser?.username}
+                </button>
             </form>
             :
             <form

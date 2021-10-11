@@ -73,9 +73,30 @@ export const InOut = types
             }
         },
 
+        async change(
+            credentials: {
+                username: string,
+                email: string,
+                password: string
+            }): Promise<string> {
+            try {
+                return "";
+            } catch (ex) {
+                return "";
+            }
+        },
+
+        async delete(): Promise<string> {
+            try {
+                return "";
+            } catch (ex) {
+                return "";
+            }
+        },
+
         async logOut() {
-            localStorage.removeItem("token")
-            localStorage.removeItem('user_data'); JSON.stringify
+            localStorage.removeItem("token");
+            localStorage.removeItem('user_data');
             setAuthorizationToken(undefined)
             this.setCurrentUser(undefined);
         }

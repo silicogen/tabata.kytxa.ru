@@ -1,25 +1,5 @@
-yarn init
 
-mkdir src public
+    '$2a$10$QL0ZwEUWXAuSckQsg1RBweH9ejgoP9mL9cBrmjsc/7AgGlGrg19z6'
+    {id: 4, username: 'alex2', email: 'alex2@gmail.com', password: '$2a$10$QL0ZwEUWXAuSckQsg1RBweH9ejgoP9mL9cBrmjsc/7AgGlGrg19z6', avatar_path: '', …}
 
-yarn add react react-dom
-
-yarn add --dev \
-    @babel/core \
-    @babel/cli \
-    @babel/preset-env \
-    @babel/preset-react \
-    webpack \
-    webpack-cli \
-    webpack-dev-server \
-    style-loader \
-    css-loader \
-    babel-loader
-touch \
-    babel.config.js \
-    webpack.config.js \
-    public/index.html \
-    src/index.js \
-    src/App.js \
-    src/App.css \
-    .gitignore
+    {response: {…}, status: 201}

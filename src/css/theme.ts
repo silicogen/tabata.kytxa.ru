@@ -119,13 +119,22 @@ const theme = {
         textDecoration: 'underline'
       }
     },
-    navLink: {
+    headNavLink: {
       color: 'rgba(255, 255, 255, 1)',
       fontSize: '1.1rem',
       textDecoration: 'none',
       "&.active": {
         fontWeight: 'bolder',
         color: 'orange',
+      },
+      '&:hover': {
+        textDecoration: 'underline'
+      }
+    },
+    pageNavLink: {
+      fontSize: '1.3rem',
+      "&.active": {
+        fontWeight: 'bolder',
       },
       '&:hover': {
         textDecoration: 'underline'

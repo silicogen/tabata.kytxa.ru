@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import API_ROUTE from "forum/apiRoute";
 import { SnapshotOrInstance, types } from "mobx-state-tree";
 import { CurrentUser } from "./CurrentUser";
@@ -36,14 +36,37 @@ export const InOut = types
                 localStorage.setItem('user_data', JSON.stringify(userData));
                 setAuthorizationToken(userData.token);
                 this.setCurrentUser(userData);
-            } catch (exeption) {
-                const error = (exeption as any)?.response?.data?.error;
+            } catch (err: any) {
+                const error = err?.response?.data?.error;
                 this.setIncorrectPasswordOrEmail(!!error?.Incorrect_password);
                 localStorage.removeItem("token")
                 localStorage.removeItem('user_data');
                 setAuthorizationToken(undefined);
                 this.setCurrentUser(undefined);
+                window.alert(JSON.stringify(err?.response?.data?.error));
             }
+        },
+        async register(credentials: { username: string, email: string, password: string }) {
+            let message: string;
+            try {
+                const axiRes = await axios.post(`${API_ROUTE}/users`, credentials);
+                const res = axiRes.data.response;
+                if (axiRes.data.status == 201) {
+                    message = `Пользователь с именем ${res.username} и почтой ${res.email} успешно создан.`
+                } else {
+                    message = `Создание пользователя выполнено без возникновения исключительнной ситуации,
+                    но всё-же что-то пошло не так:
+                    ${JSON.stringify(axiRes)}`;
+                }
+            } catch (ex) {
+                if (axios.isAxiosError(ex)) {
+                    message = `AxiosError: ${JSON.stringify(ex.response?.data, undefined, 4)}`;
+                }
+                else {
+                    message = `Some Error: ${JSON.stringify(ex)}`;
+                }
+            }
+            alert(message);
         },
         async logOut() {
             localStorage.removeItem("token")

@@ -5,8 +5,8 @@ import { useRemote } from "store/Remote";
 import { observer } from "mobx-react-lite";
 import { NavLink } from "react-router-dom";
 
-const _InOut: React.FC = () => {
-    const [credentials, setCredentials] = useState({ email: '', password: '' });
+const _Registration: React.FC = () => {
+    const [credentials, setCredentials] = useState({ username: "", email: '', password: '' });
     const theme = useTheme();
     const inOut = useRemote().inOut;
 
@@ -15,13 +15,13 @@ const _InOut: React.FC = () => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
 
-    const logIn = (e: React.FormEvent<HTMLFormElement>) => {
+    const register = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        inOut.logIn(credentials);
+        inOut.register(credentials);
     }
 
     return <section css={css(theme.sections.common)}>
-        <h2>Вход-выход</h2>
+        <h2>Регистрация</h2>
         {inOut.isAuthenticated ?
             <form>
                 <button
@@ -32,9 +32,23 @@ const _InOut: React.FC = () => {
             :
             <form
                 css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}
-                onSubmit={logIn}
+                onSubmit={register}
             >
                 <div css={css(theme.divs.params)}>
+                    <label
+                        htmlFor="userNameInput"
+                        style={{ justifySelf: "end" }}>
+                        Имя:
+                    </label>
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Введите ник пользователя"
+                        onChange={credentialsChange}
+                        value={credentials.username}
+                        id="userNameInput"
+                        css={css(theme.inputs.name)}
+                    />
                     <label
                         htmlFor="loginInput"
                         style={{ justifySelf: "end" }}>
@@ -69,14 +83,13 @@ const _InOut: React.FC = () => {
                     <small css={css({ color: "red" })}>Не верный логин или пароль</small>
                     : undefined}
 
-                <div css={css({ display: "flex", gap: "3rem", alignItems:"center" })}>
+                <div css={css({ display: "flex", gap: "3rem", alignItems: "center" })}>
                     <button
                         type="submit"
                         disabled={!credentials.email || !credentials.password}
                         css={css(theme.buttons.primary)}
-                    >Войти </button>
-
-                    <NavLink to="/registration" css={css(theme.navLinks.pageNavLink)}>Регистрация</NavLink>
+                    >Создать пользователя </button>
+                    <NavLink to="/login" css={css(theme.navLinks.pageNavLink)}>Войти</NavLink>
                 </div>
             </form>
         }
@@ -85,4 +98,4 @@ const _InOut: React.FC = () => {
     </section>;
 }
 
-export const InOut = observer(_InOut);
+export const Registration = observer(_Registration);

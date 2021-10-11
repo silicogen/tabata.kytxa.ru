@@ -23,6 +23,7 @@ import { HamburgerButton } from "views/Controls/Buttons";
 import theme from "css/theme";
 import { useRemote } from 'store/Remote';
 import { InOut } from 'views/Pages/ImportExport/Remote/InOut';
+import { Registration } from 'views/Pages/ImportExport/Remote/Registration';
 
 const App: React.FC = () => {
     const root = useRoot();
@@ -56,11 +57,11 @@ const App: React.FC = () => {
                         ? <NavLink
                             to="/login"
                             onClick={inOut.logOut}
-                            css={css(theme.navLinks.navLink)}
+                            css={css(theme.navLinks.headNavLink)}
                         >Выйти</NavLink>
                         : <NavLink
                             to="/login"
-                            css={css(theme.navLinks.navLink)}
+                            css={css(theme.navLinks.headNavLink)}
                         >Логин</NavLink>}
                 </span>
             </header>
@@ -92,7 +93,7 @@ const App: React.FC = () => {
                     <Route path="/server" component={RemoteImportExport} />
                     <Route path="/about" component={About} />
                     <Route path="/login" component={InOut} />
-                    <Route path="/registration" component={() => <>Registration</>} />
+                    <Route path="/registration" component={Registration} />
                 </Switch>
             </main>
         </Router>

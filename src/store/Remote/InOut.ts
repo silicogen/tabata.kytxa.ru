@@ -64,6 +64,7 @@ export const InOut = types
                     return `Создание пользователя выполнено без возникновения исключительнной ситуации, но всё-же что-то пошло не так, поскольку статус не равен 201: ${jsonStr(axiRes)}`;
                 }
             } catch (ex) {
+                const ex1 = ex;
                 if (axios.isAxiosError(ex)) {
                     return `Axios error response data: ${jsonStr(ex.response?.data)}`;
                 }
@@ -73,24 +74,56 @@ export const InOut = types
             }
         },
 
-        async change(
-            credentials: {
-                username: string,
-                email: string,
-                password: string
-            }): Promise<string> {
+        async updateUser(updateUser: {
+            email: string,
+            current_password: string,
+            new_password: string
+        }): Promise<string> {
             try {
+                const axiRes = await axios.put(`${API_ROUTE}/users/${self.currentUser?.id}`, updateUser);
+                let updatedUser = axiRes.data.response
+                const res = axiRes.data.response;
+                localStorage.setItem('user_data', JSON.stringify(updatedUser));
+                // localStorage.setItem("token", updatedUser.token);
+                // localStorage.removeItem("token");
+                // localStorage.removeItem('user_data');
+
+                if (axiRes.data.status == 200) {
+                    return `Пользователь сохранён с именем ${res.username} и почтой ${res.email}.`;
+                } else {
+                    return `Изменение пользователя выполнено без возникновения исключительнной ситуации, но всё-же что-то пошло не так, поскольку статус не равен 200: ${jsonStr(axiRes)}`;
+                }
+                const r = axiRes;
                 return "";
             } catch (ex) {
-                return "";
+                const ex1 = ex;
+                if (axios.isAxiosError(ex)) {
+                    return `Axios error response data: ${jsonStr(ex.response?.data)}`;
+                }
+                else {
+                    return `Some Error: ${jsonStr(ex)}`;
+                }
             }
+            return "";
         },
 
-        async delete(): Promise<string> {
+        async deleteUser(): Promise<string> {
             try {
-                return "";
+                const axiRes = await axios.delete(`${API_ROUTE}/users/${self.currentUser?.id}`);
+                localStorage.removeItem("token");
+                localStorage.removeItem('user_data');
+                if (axiRes.data.status == 200) {
+                    return `Пользователь успешно удалён.`;
+                } else {
+                    return `Удаление пользователя выполнено без возникновения исключительнной ситуации, но всё-же что-то пошло не так, поскольку статус не равен 200: ${jsonStr(axiRes)}`;
+                }
             } catch (ex) {
-                return "";
+                if (axios.isAxiosError(ex)) {
+                    return `Axios error response data: ${jsonStr(ex.response?.data)}`;
+                }
+                else {
+                    return `Some Error: ${jsonStr(ex)}`;
+                }
             }
         },
 

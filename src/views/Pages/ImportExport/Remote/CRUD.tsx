@@ -4,7 +4,6 @@ import { useTheme } from "css/theme";
 import { useRoot } from "store/Root";
 import { useRemote } from "store/Remote";
 import { observer } from "mobx-react-lite";
-import { getSavedCurrentUser } from "auth/index";
 
 const _CRUD: React.FC = () => {
     const theme = useTheme();
@@ -12,9 +11,6 @@ const _CRUD: React.FC = () => {
     const remote = useRemote();
     const wrksnps = remote.wrksnps;
     const wrksnp = wrksnps.selected;
-
-    const savedCurrentUser = getSavedCurrentUser();
-    remote.inOut.setCurrentUser(savedCurrentUser);
 
     const saveNew = () => {
         const snap = getSnapshot(root);

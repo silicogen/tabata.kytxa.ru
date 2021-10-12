@@ -20,6 +20,8 @@ const _InOut: React.FC = () => {
         inOut.logIn(credentials);
     }
 
+    const deleteUser = () => inOut.deleteUser().then(alert);
+
     return <section css={css(theme.sections.common)}>
         <h2>Вход-выход</h2>
         {inOut.isAuthenticated ?
@@ -27,16 +29,13 @@ const _InOut: React.FC = () => {
                 css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}
             >
                 <span>Выполнен вход на сервер. Пользователь: {inOut.currentUser?.username}, почта: {inOut.currentUser?.email}.</span>
+                <NavLink to="/updateUser" css={css(theme.navLinks.pageNavLink)}>Редактировать пользователя {inOut.currentUser?.username}</NavLink>
                 <button
                     css={css(theme.buttons.primary)}
-                    onClick={() => inOut.change({} as any)}
-                >Редактировать пользователя {inOut.currentUser?.username}
-                </button>
-                <button
-                    css={css(theme.buttons.primary)}
-                    onClick={inOut.delete}
+                    onClick={deleteUser}
                 >Удалить пользователя {inOut.currentUser?.username}
                 </button>
+            
             </form>
             :
             <form

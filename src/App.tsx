@@ -24,6 +24,7 @@ import theme from "css/theme";
 import { useRemote } from 'store/Remote';
 import { InOut } from 'views/Pages/ImportExport/Remote/InOut';
 import { Registration } from 'views/Pages/ImportExport/Remote/Registration';
+import { UpdateUser } from 'views/Pages/ImportExport/Remote/UpdateUser';
 
 const App: React.FC = () => {
     const root = useRoot();
@@ -50,6 +51,7 @@ const App: React.FC = () => {
                         <Route path="/about">Что это?</Route>
                         <Route path="/forum">Форум</Route>
                         <Route path="/login">Логин</Route>
+                        <Route path="/userEdit">Изменить пользователя</Route>
                     </Switch>
                 </span>
                 <span>
@@ -94,6 +96,7 @@ const App: React.FC = () => {
                     <Route path="/about" component={About} />
                     <Route path="/login" component={InOut} />
                     <Route path="/registration" component={Registration} />
+                    <Route path="/updateUser" component={UpdateUser} />
                 </Switch>
             </main>
         </Router>

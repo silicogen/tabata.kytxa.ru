@@ -6,7 +6,6 @@ import { CRUD } from "./CRUD";
 import { useTheme } from "css/theme";
 import { useRemote } from "store/Remote";
 import { observer } from "mobx-react-lite";
-import { getSavedCurrentUser } from "auth/index";
 
 const _Page: React.FC = () => {
     const theme = useTheme();

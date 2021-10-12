@@ -17,7 +17,7 @@ export const getSavedCurrentUser = () => {
         localStorage.removeItem("token");
         return undefined;
     } else {
-        setAuthorizationToken(localStorage.token);
+        setAuthorizationToken(token);
         return JSON.parse(user_data);
     }
 }

@@ -3,23 +3,11 @@ import API_ROUTE from "forum/apiRoute";
 import { SnapshotOrInstance, types } from "mobx-state-tree";
 import { CurrentUser } from "./CurrentUser";
 import { setAuthorizationToken } from "auth/index";
-import { ThemeConsumer } from "styled-components";
 import { jsonStr } from "utils";
 
-const initState = {
-    isAuthenticated: false,
-    currentUser: {},
-    isLoading: false,
-    isLoadingAvatar: false,
-    isUpdatingUser: false,
-    authError: null,
-    authSuccess: null
-}
 
 export const InOut = types
     .model("InOut", {
-        // isAuthenticated: !isEmpty(action.payload),
-
         currentUser: types.maybe(CurrentUser),
         incorrectPasswordOrEmail: types.maybe(types.boolean),
     })
@@ -81,20 +69,13 @@ export const InOut = types
         }): Promise<string> {
             try {
                 const axiRes = await axios.put(`${API_ROUTE}/users/${self.currentUser?.id}`, updateUser);
-                let updatedUser = axiRes.data.response
-                const res = axiRes.data.response;
-                localStorage.setItem('user_data', JSON.stringify(updatedUser));
-                // localStorage.setItem("token", updatedUser.token);
-                // localStorage.removeItem("token");
-                // localStorage.removeItem('user_data');
-
+                const { id, username, email } = axiRes.data.response;
+                localStorage.setItem('user_data', JSON.stringify({ id, username, email }));
                 if (axiRes.data.status == 200) {
-                    return `Пользователь сохранён с именем ${res.username} и почтой ${res.email}.`;
+                    return `Пользователь сохранён с именем ${username} и почтой ${email}.`;
                 } else {
                     return `Изменение пользователя выполнено без возникновения исключительнной ситуации, но всё-же что-то пошло не так, поскольку статус не равен 200: ${jsonStr(axiRes)}`;
                 }
-                const r = axiRes;
-                return "";
             } catch (ex) {
                 const ex1 = ex;
                 if (axios.isAxiosError(ex)) {

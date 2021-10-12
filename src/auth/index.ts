@@ -1,23 +1,22 @@
 import axios from "axios";
 
-export const setAuthorizationToken = (token?: string) => {
-    if (token) {
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    } else {
-        delete axios.defaults.headers.common['Authorization'];
-    }
-};
+export const setToken = (token: string) =>
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+export const delToken = () =>
+    delete axios.defaults.headers.common['Authorization'];
 
 export const getSavedCurrentUser = () => {
-    const user_data = localStorage.user_data;
-    const token = localStorage.token;
-    if (!token || !user_data) {
-        setAuthorizationToken(undefined);
-        localStorage.removeItem("user_data");
-        localStorage.removeItem("token");
-        return undefined;
-    } else {
-        setAuthorizationToken(token);
-        return JSON.parse(user_data);
+    const { token, user_data } = localStorage;
+    if (token && user_data) {
+        const { id, username, email } = JSON.parse(user_data);
+        if (id && username && email) {
+            setToken(token);
+            return { id, username, email };
+        }
     }
+    delToken();
+    localStorage.removeItem("user_data");
+    localStorage.removeItem("token");
+    return undefined;
 }

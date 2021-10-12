@@ -1,8 +1,8 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import API_ROUTE from "forum/apiRoute";
 import { SnapshotOrInstance, types } from "mobx-state-tree";
 import { CurrentUser } from "./CurrentUser";
-import { setAuthorizationToken } from "auth/index";
+import { setToken, delToken } from "auth/index";
 import { jsonStr } from "utils";
 
 
@@ -12,29 +12,40 @@ export const InOut = types
         incorrectPasswordOrEmail: types.maybe(types.boolean),
     })
     .actions(self => ({
+
         setIncorrectPasswordOrEmail(incorrect: boolean) {
             self.incorrectPasswordOrEmail = incorrect;
         },
+
         setCurrentUser(user?: SnapshotOrInstance<typeof CurrentUser>) {
             self.currentUser = user;
         },
+
         async logIn(credentials: { email: string, password: string }) {
             try {
-                const res = await axios.post(`${API_ROUTE}/login`, credentials)
-                const userData = res.data.response
-                localStorage.setItem("token", userData.token)
-                localStorage.setItem('user_data', JSON.stringify(userData));
-                setAuthorizationToken(userData.token);
-                this.setCurrentUser(userData);
+                const axiRes = await axios.post(`${API_ROUTE}/login`, credentials)
+                const { id, username, email, token } = axiRes.data.response;
+                const user = { id, username, email };
+                localStorage.setItem("token", token)
+                localStorage.setItem('user_data', jsonStr(user));
+                setToken(token);
+                this.setCurrentUser(user);
             } catch (err: any) {
                 const error = err?.response?.data?.error;
                 this.setIncorrectPasswordOrEmail(!!error?.Incorrect_password);
                 localStorage.removeItem("token")
                 localStorage.removeItem('user_data');
-                setAuthorizationToken(undefined);
+                delToken();
                 this.setCurrentUser(undefined);
-                window.alert(JSON.stringify(err?.response?.data?.error));
+                window.alert(JSON.stringify(error));
             }
+        },
+
+        async logOut() {
+            localStorage.removeItem("token");
+            localStorage.removeItem('user_data');
+            delToken()
+            this.setCurrentUser(undefined);
         },
 
         async register(
@@ -108,12 +119,6 @@ export const InOut = types
             }
         },
 
-        async logOut() {
-            localStorage.removeItem("token");
-            localStorage.removeItem('user_data');
-            setAuthorizationToken(undefined)
-            this.setCurrentUser(undefined);
-        }
     }))
     .views(self => ({
         get isAuthenticated() {

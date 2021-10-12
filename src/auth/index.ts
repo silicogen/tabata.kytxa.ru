@@ -1,10 +1,27 @@
 import axios from "axios";
+import { jsonStr } from "utils";
+
 
 export const setToken = (token: string) =>
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-export const delToken = () =>
+export const remToken = () =>
     delete axios.defaults.headers.common['Authorization'];
+
+
+
+export const saveToken = (token: string) =>
+    localStorage.setItem("token", token);
+export const loseToken = () =>
+    localStorage.removeItem("token");
+
+
+
+export const saveUserData = (user: { id: number, username: string, email: string }) =>
+    localStorage.setItem('user_data', jsonStr(user));
+
+export const loseUserData = () =>
+    localStorage.removeItem("user_data");
 
 export const getSavedCurrentUser = () => {
     const { token, user_data } = localStorage;
@@ -15,8 +32,8 @@ export const getSavedCurrentUser = () => {
             return { id, username, email };
         }
     }
-    delToken();
-    localStorage.removeItem("user_data");
-    localStorage.removeItem("token");
+    remToken();
+    loseToken();
+    loseUserData();
     return undefined;
 }

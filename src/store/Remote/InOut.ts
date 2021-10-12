@@ -2,7 +2,7 @@ import axios from "axios";
 import API_ROUTE from "forum/apiRoute";
 import { SnapshotOrInstance, types } from "mobx-state-tree";
 import { CurrentUser } from "./CurrentUser";
-import { setToken, delToken } from "auth/index";
+import { setToken, remToken, saveToken, saveUserData, loseToken, loseUserData } from "auth";
 import { jsonStr } from "utils";
 
 
@@ -26,25 +26,25 @@ export const InOut = types
                 const axiRes = await axios.post(`${API_ROUTE}/login`, credentials)
                 const { id, username, email, token } = axiRes.data.response;
                 const user = { id, username, email };
-                localStorage.setItem("token", token)
-                localStorage.setItem('user_data', jsonStr(user));
+                saveToken(token)
+                saveUserData(user);
                 setToken(token);
                 this.setCurrentUser(user);
             } catch (err: any) {
                 const error = err?.response?.data?.error;
                 this.setIncorrectPasswordOrEmail(!!error?.Incorrect_password);
-                localStorage.removeItem("token")
-                localStorage.removeItem('user_data');
-                delToken();
+                loseToken()
+                loseUserData();
+                remToken();
                 this.setCurrentUser(undefined);
                 window.alert(JSON.stringify(error));
             }
         },
 
         async logOut() {
-            localStorage.removeItem("token");
-            localStorage.removeItem('user_data');
-            delToken()
+            loseToken();
+            loseUserData();
+            remToken()
             this.setCurrentUser(undefined);
         },
 
@@ -81,7 +81,7 @@ export const InOut = types
             try {
                 const axiRes = await axios.put(`${API_ROUTE}/users/${self.currentUser?.id}`, updateUser);
                 const { id, username, email } = axiRes.data.response;
-                localStorage.setItem('user_data', JSON.stringify({ id, username, email }));
+                saveUserData({ id, username, email });
                 if (axiRes.data.status == 200) {
                     return `Пользователь сохранён с именем ${username} и почтой ${email}.`;
                 } else {
@@ -102,8 +102,8 @@ export const InOut = types
         async deleteUser(): Promise<string> {
             try {
                 const axiRes = await axios.delete(`${API_ROUTE}/users/${self.currentUser?.id}`);
-                localStorage.removeItem("token");
-                localStorage.removeItem('user_data');
+                loseToken();
+                loseUserData();
                 if (axiRes.data.status == 200) {
                     return `Пользователь успешно удалён.`;
                 } else {

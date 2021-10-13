@@ -16,7 +16,6 @@ import { Page as PhazesPage, DisplayPath as PhazesDisplayPath } from 'views/Page
 import { LocalImportExport } from "views/Pages/ImportExport/Local"
 import { RemoteImportExport } from "views/Pages/ImportExport/Remote/Wrksnps"
 import Goer from "views/Pages/Goer";
-import About from "views/Pages/About";
 import { App as ForumApp } from "forum";
 import { observer } from "mobx-react";
 import { HamburgerButton } from "views/Controls/Buttons";
@@ -93,7 +92,6 @@ const App: React.FC = () => {
                     <Route path="/file" component={LocalImportExport} />
                     <Route path="/forum" component={ForumApp} />
                     <Route path="/server" component={RemoteImportExport} />
-                    <Route path="/about" component={About} />
                     <Route path="/login" component={InOut} />
                     <Route path="/registration" component={Registration} />
                     <Route path="/updateUser" component={UpdateUser} />

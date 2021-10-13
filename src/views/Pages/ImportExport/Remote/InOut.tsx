@@ -17,7 +17,7 @@ const _InOut: React.FC = () => {
 
     const logIn = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        inOut.logIn(credentials);
+        inOut.logIn(credentials).then(alert);
     }
 
     const deleteUser = () => inOut.deleteUser().then(alert);

@@ -23,21 +23,35 @@ export const InOut = types
 
         async logIn(credentials: { email: string, password: string }) {
             try {
-                const axiRes = await axios.post(`${API_ROUTE}/login`, credentials)
-                const { id, username, email, token } = axiRes.data.response;
-                const user = { id, username, email };
-                saveToken(token)
-                saveUserData(user);
-                setToken(token);
-                this.setCurrentUser(user);
-            } catch (err: any) {
-                const error = err?.response?.data?.error;
-                this.setIncorrectPasswordOrEmail(!!error?.Incorrect_password);
+                const axiRes = await axios.post(`${API_ROUTE}/login`, credentials);
+                if (axiRes.data.status == 200) {
+                    const { id, username, email, token } = axiRes.data.response;
+                    const user = { id, username, email };
+                    saveToken(token)
+                    saveUserData(user);
+                    setToken(token);
+                    this.setCurrentUser(user);
+                    return `Пользователь с именем ${username} и почтой ${email} получил доступ к серверу.`;
+                } else {
+                    return `Получение пользователем доступа на сервер выполнено без возникновения исключительнной ситуации, но всё-же что-то пошло не так, поскольку статус не равен 200: ${jsonStr(axiRes)}`;
+                }
+            } catch (ex: any) {
+                const ex1 = ex;
                 loseToken()
                 loseUserData();
                 remToken();
                 this.setCurrentUser(undefined);
-                window.alert(JSON.stringify(error));
+                if (axios.isAxiosError(ex)) {
+                    const status = ex?.response?.status;
+                    const error = ex?.response?.data?.error;
+                    if (status == 422 && error?.Incorrect_password) {
+                        this.setIncorrectPasswordOrEmail(!!error?.Incorrect_password);
+                        return `Не верный логин или пароль`;
+                    } else
+                        return `Axios error response data: ${jsonStr(ex.response?.data)}`;
+                } else {
+                    return `Some Error: ${jsonStr(ex)}`;
+                }
             }
         },
 
@@ -63,7 +77,6 @@ export const InOut = types
                     return `Создание пользователя выполнено без возникновения исключительнной ситуации, но всё-же что-то пошло не так, поскольку статус не равен 201: ${jsonStr(axiRes)}`;
                 }
             } catch (ex) {
-                const ex1 = ex;
                 if (axios.isAxiosError(ex)) {
                     return `Axios error response data: ${jsonStr(ex.response?.data)}`;
                 }
@@ -96,7 +109,6 @@ export const InOut = types
                     return `Some Error: ${jsonStr(ex)}`;
                 }
             }
-            return "";
         },
 
         async deleteUser(): Promise<string> {

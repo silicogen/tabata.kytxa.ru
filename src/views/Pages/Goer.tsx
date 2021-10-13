@@ -64,14 +64,14 @@ const Goer: React.FC = () => {
             Фазы
             <ul>
                 {phazes.map(p =>
-                    <li css={css({ bg: p === goer.currentPhaze ? "lightblue" : "unset" })}>
+                    <li key={p?.id} css={css({ bg: p === goer.currentPhaze ? "lightblue" : "unset" })}>
                         {p?.name}
                     </li>)}
             </ul>
             Упражнения
             < ul >
                 {exercizes.map(e =>
-                    <li css={css({ bg: e === goer.currentExercize ? "lightblue" : "unset" })}>
+                    <li key={e?.id} css={css({ bg: e === goer.currentExercize ? "lightblue" : "unset" })}>
                         {e?.name}
                     </li>)}
             </ul >

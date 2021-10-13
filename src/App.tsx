@@ -14,7 +14,7 @@ import { Page as WorkoutsPage } from 'views/Pages/Workouts';
 import { Page as ExercizesPage, DisplayPath as ExercizesDisplayPath } from 'views/Pages/Exercizes';
 import { Page as PhazesPage, DisplayPath as PhazesDisplayPath } from 'views/Pages/Phazes';
 import { LocalImportExport } from "views/Pages/ImportExport/Local"
-import { RemoteImportExport } from "views/Pages/ImportExport/Remote"
+import { RemoteImportExport } from "views/Pages/ImportExport/Remote/Wrksnps"
 import Goer from "views/Pages/Goer";
 import About from "views/Pages/About";
 import { App as ForumApp } from "forum";
@@ -22,9 +22,9 @@ import { observer } from "mobx-react";
 import { HamburgerButton } from "views/Controls/Buttons";
 import theme from "css/theme";
 import { useRemote } from 'store/Remote';
-import { InOut } from 'views/Pages/ImportExport/Remote/InOut';
-import { Registration } from 'views/Pages/ImportExport/Remote/Registration';
-import { UpdateUser } from 'views/Pages/ImportExport/Remote/UpdateUser';
+import { InOut } from 'views/Pages/ImportExport/Remote/User/InOut';
+import { Registration } from 'views/Pages/ImportExport/Remote/User/Registration';
+import { UpdateUser } from 'views/Pages/ImportExport/Remote/User/UpdateUser';
 
 const App: React.FC = () => {
     const root = useRoot();

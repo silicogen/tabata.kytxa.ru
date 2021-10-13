@@ -1,6 +1,6 @@
 import { css } from "@styled-system/css";
 import { Wrksnps } from "./Wrksnps";
-import { InOut } from "./InOut";
+import { InOut } from "../User/InOut";
 import { RenameWrksnp } from "./RenameWrksnp";
 import { CRUD } from "./CRUD";
 import { useTheme } from "css/theme";

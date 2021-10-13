@@ -1,5 +1,5 @@
 import axios from "axios";
-import API_ROUTE from "forum/apiRoute";
+import API_ROUTE from "./apiRoute";
 import { SnapshotOrInstance, types } from "mobx-state-tree";
 import { CurrentUser } from "./CurrentUser";
 import { setToken, remToken, saveToken, saveUserData, loseToken, loseUserData } from "auth";

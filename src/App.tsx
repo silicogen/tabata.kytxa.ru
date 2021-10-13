@@ -16,7 +16,6 @@ import { Page as PhazesPage, DisplayPath as PhazesDisplayPath } from 'views/Page
 import { LocalImportExport } from "views/Pages/ImportExport/Local"
 import { RemoteImportExport } from "views/Pages/ImportExport/Remote/Wrksnps"
 import Goer from "views/Pages/Goer";
-import { App as ForumApp } from "forum";
 import { observer } from "mobx-react";
 import { HamburgerButton } from "views/Controls/Buttons";
 import theme from "css/theme";
@@ -75,8 +74,7 @@ const App: React.FC = () => {
                 <MenuNavLink to="/exercizes">Упражнения</MenuNavLink>
                 <MenuNavLink to="/phazes">Фазы</MenuNavLink>
                 <MenuNavLink to="/file">Файл</MenuNavLink>
-                <MenuNavLink to="/forum">Сервер</MenuNavLink>
-                <MenuNavLink to="/server">Сервер1</MenuNavLink>
+                <MenuNavLink to="/server">Сервер</MenuNavLink>
                 <MenuNavLink to="/about">Что это?</MenuNavLink>
 
             </nav>
@@ -90,7 +88,6 @@ const App: React.FC = () => {
                     <Route path="/exercizes" component={ExercizesPage} />
                     <Route path="/phazes" component={PhazesPage} />
                     <Route path="/file" component={LocalImportExport} />
-                    <Route path="/forum" component={ForumApp} />
                     <Route path="/server" component={RemoteImportExport} />
                     <Route path="/login" component={InOut} />
                     <Route path="/registration" component={Registration} />

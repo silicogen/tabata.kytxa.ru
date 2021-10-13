@@ -1,5 +1,5 @@
 import axios from "axios";
-import API_ROUTE from "forum/apiRoute";
+import API_ROUTE from "./apiRoute";
 import { getParentOfType, Instance, SnapshotOrInstance, types } from "mobx-state-tree";
 import { Remote } from ".";
 

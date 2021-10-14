@@ -12,7 +12,7 @@ const _MenuNavLink: React.FC<NavLinkProps> = props => {
     return <NavLink
         css={css(theme.navLinks.menuNavLink)}
         {...props}
-        onClick={(e) => { ui.collapseNavMenu(); props.onClick?.(e) }}
+        onClick={ui.collapseNavMenu}
     />;
 }
 

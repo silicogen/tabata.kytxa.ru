@@ -81,7 +81,7 @@ const theme = {
       gridArea: 'nav',
       position: ["fixed", "initial"],
       top: '3.3rem',
-      left: navMenuIsCollapsed ? "-130px" : "0px",
+      left: navMenuIsCollapsed ? "-170px" : "0px",
       width: ["auto"],
       bg: ['initial', colors.main],
       // p: ['0px', '4px'],
@@ -111,9 +111,11 @@ const theme = {
       padding: '0 10px',
       fontSize: '1.1rem',
       borderRadius: '0 20px',
+      fill: "white",
       "&.active": {
         fontWeight: 'bolder',
         color: 'orange',
+        fill: "orange"
       },
       '&:hover': {
         textDecoration: 'underline'
@@ -276,7 +278,12 @@ const theme = {
       display: ["initial", "initial", "initial", "none"],
       width: "1.5rem", height: "1.5rem",
       transform: pinned ? 'unset' : 'rotate(45deg)'
-    })
+    }),
+    inMenuNavLink: {
+      width: "1.2rem",
+      height: "1.2rem",
+      mr: "0.7rem",
+    } as SystemStyleObject
   }
 };
 

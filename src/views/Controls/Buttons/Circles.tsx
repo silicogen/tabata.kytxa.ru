@@ -1,19 +1,10 @@
 import React from 'react';
 import { css } from "@styled-system/css";
 import { SystemStyleObject } from "@styled-system/css";
-import PlaySVG  from "icons/me/play.svg";
-import PauseSVG  from "icons/me/pause.svg";
-import StopSVG  from "icons/me/stop.svg";
-import PlusSVG  from "icons/me/plus-round.svg";
-import MinusSVG  from "icons/me/minus-round.svg";
-import CancelSVG  from "icons/me/close-round.svg";
-import DeleteSVG  from "icons/me/android-delete.svg";
-import EditSVG  from "icons/me/compose.svg";
-import UpSVG  from "icons/me/row-up-c.svg";
-import DownSVG  from "icons/me/row-down-c.svg";
-import LeftSVG  from "icons/me/arrow-left-c.svg";
-import ReturnOkSVG  from "icons/me/return-ok.svg";
-import OkSVG  from "icons/me/checkmark-round.svg";
+import {
+  PlaySVG, PauseSVG, StopSVG, PlusSVG, MinusSVG, DeleteSVG,
+  CancelSVG, EditSVG, UpSVG, DownSVG, LeftSVG, ReturnOkSVG, OkSVG
+} from "icons/used";
 
 type Strings = string | string[];
 
@@ -39,11 +30,6 @@ const svgCSS: SystemStyleObject = {
 }
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & { diametr?: Strings }
-
-export const PlusButton1: React.FC<ButtonProps> = props =>
-  <button {...props} >
-    <PlusSVG />
-  </button>
 
 export const PlusButton: React.FC<ButtonProps> = props =>
   <button {...props} css={css(buttonCSS)}>

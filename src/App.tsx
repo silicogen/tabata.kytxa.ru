@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from "@styled-system/css";
+import { css, SystemStyleObject } from "@styled-system/css";
 
 import { useRoot } from "store/Root";
 import {
@@ -23,6 +23,7 @@ import { useRemote } from 'store/Remote';
 import { InOut } from 'views/Pages/ImportExport/Remote/User/InOut';
 import { Registration } from 'views/Pages/ImportExport/Remote/User/Registration';
 import { UpdateUser } from 'views/Pages/ImportExport/Remote/User/UpdateUser';
+import { HomeSVG, PlaySVG } from "icons/used";
 
 const App: React.FC = () => {
     const root = useRoot();
@@ -68,13 +69,27 @@ const App: React.FC = () => {
 
             <nav
                 css={css(theme.layout.nav(uiStore.navMenuIsCollapsed))}>
-                <MenuNavLink to="/" exact>Домой</MenuNavLink>
-                <MenuNavLink to="/go">Выполнение</MenuNavLink>
-                <MenuNavLink to="/workouts">Тренировки</MenuNavLink>
-                <MenuNavLink to="/exercizes">Упражнения</MenuNavLink>
-                <MenuNavLink to="/phazes">Фазы</MenuNavLink>
-                <MenuNavLink to="/file">Файл</MenuNavLink>
-                <MenuNavLink to="/server">Сервер</MenuNavLink>
+                <MenuNavLink to="/" exact>
+                    <HomeSVG css={css(theme.svgs.inMenuNavLink)} />Домой
+                </MenuNavLink>
+                <MenuNavLink to="/go" >
+                    <PlaySVG css={css(theme.svgs.inMenuNavLink)} />Выполнение
+                </MenuNavLink>
+                <MenuNavLink to="/workouts">
+                    <PlaySVG css={css(theme.svgs.inMenuNavLink)} />Тренировки
+                </MenuNavLink>
+                <MenuNavLink to="/exercizes">
+                    <PlaySVG css={css(theme.svgs.inMenuNavLink)} />Упражнения
+                </MenuNavLink>
+                <MenuNavLink to="/phazes">
+                    <PlaySVG css={css(theme.svgs.inMenuNavLink)} />Фазы
+                </MenuNavLink>
+                <MenuNavLink to="/file">
+                    <PlaySVG css={css(theme.svgs.inMenuNavLink)} />Файл
+                </MenuNavLink>
+                <MenuNavLink to="/server">
+                    <PlaySVG css={css(theme.svgs.inMenuNavLink)} />Сервер
+                </MenuNavLink>
             </nav>
 
             <main onClick={uiStore.collapseNavMenu}

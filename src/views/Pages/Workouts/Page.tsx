@@ -9,7 +9,7 @@ import Buttons from "./Buttons";
 import Exercizes from "./Exercizes";
 import Phazes from "./Phazes";
 import Table from "./Table";
-import PinSVG  from "icons/me/pin.svg";
+import { PinSVG } from "icons/used";
 
 const Page: React.FC = () => {
     const root = useRoot();
@@ -76,9 +76,10 @@ const Page: React.FC = () => {
         <section css={css(theme.sections.list)}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <h2>  Список тренировок</h2>
-                <PinSVG
-                    onClick={root.ui.toggleWorkoutDetailsHightIsFixed}
-                    css={css(theme.svgs.pin(root.ui.workoutDetailsHightIsFixed))} />
+                <span onClick={root.ui.toggleWorkoutDetailsHightIsFixed}>
+                    <PinSVG
+                        css={css(theme.svgs.pin(root.ui.workoutDetailsHightIsFixed))} />
+                </span>
             </div>
             <Buttons />
             {workouts.items.length > 0 && <Table />}

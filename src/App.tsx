@@ -51,13 +51,14 @@ const App: React.FC = () => {
                             component={PhazesDisplayPath} />
                         <Route path="/importExport">Хранилище</Route>
                         <Route path="/about">Что это?</Route>
-                        <Route path="/forum">Форум</Route>
+                        <Route path="/server">Сервер</Route>
+                        <Route path="/file">Файл</Route>
                         <Route path="/login">Логин</Route>
                         <Route path="/userEdit">Изменить пользователя</Route>
                     </Switch>
                 </span>
-                <span css={css({ display: "flex", alignItems: "center" })}>
 
+                <span css={css({ display: "flex", alignItems: "center" })}>
                     {inOut.isAuthenticated
                         ? <NavLink
                             to="/login"

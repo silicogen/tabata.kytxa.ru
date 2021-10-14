@@ -55,6 +55,7 @@ const App: React.FC = () => {
                         <Route path="/file">Файл</Route>
                         <Route path="/login">Логин</Route>
                         <Route path="/profile">Профиль</Route>
+                        <Route path="/registration">Регистрация</Route>
                     </Switch>
                 </span>
 

@@ -5,8 +5,9 @@ import { useRemote } from "store/Remote";
 import { observer } from "mobx-react-lite";
 import { NavLink } from "react-router-dom";
 
+const init = { username: '', email: '', password: '' };
 const _Registration: React.FC = () => {
-    const [credentials, setCredentials] = useState({ username: "", email: '', password: '' });
+    const [credentials, setCredentials] = useState(init);
     const theme = useTheme();
     const inOut = useRemote().inOut;
 
@@ -14,17 +15,19 @@ const _Registration: React.FC = () => {
         inOut.setIncorrectPasswordOrEmail(false);
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
+    const clearInput = () => {
+        setCredentials(init);
+    }
 
     const register = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         inOut.register(credentials)
-            .then(message => {
-                alert(message)
-            });
+            .then(alert)
+            .then(clearInput);
     }
 
-    return <section css={css(theme.sections.common)}>
-        <h2>Регистрация</h2>
+    return <div css={css(theme.divs.commonPage)}> <section css={css(theme.sections.common)}>
+        <h2>Создание новой учётной записи</h2>
         <form
             css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}
             onSubmit={register}
@@ -74,9 +77,8 @@ const _Registration: React.FC = () => {
                 />
 
             </div>
-            {inOut.incorrectPasswordOrEmail ?
-                <small css={css({ color: "red" })}>Не верный логин или пароль</small>
-                : undefined}
+            {inOut.incorrectPasswordOrEmail &&
+                <small css={css({ color: "red" })}>Не верный логин или пароль</small>}
 
             <div css={css({ display: "flex", gap: "3rem", alignItems: "center" })}>
                 <button
@@ -86,7 +88,7 @@ const _Registration: React.FC = () => {
                 >Создать пользователя </button>
             </div>
         </form>
-    </section>;
+    </section></div>;
 }
 
 export const Registration = observer(_Registration);

@@ -3,7 +3,7 @@ import { css } from "@styled-system/css";
 import { useTheme } from "css/theme";
 import { useRemote } from "store/Remote";
 import { observer } from "mobx-react-lite";
-import { NavLink } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 const _Profile: React.FC = () => {
     const theme = useTheme();
@@ -38,14 +38,22 @@ const _Profile: React.FC = () => {
             new_password: user.new_password
         })
             .then(alert)
-        // .then(clearInput);
-
+            .then(clearInput);
     }
 
-    const deleteUser = () => inOut.deleteUser().then(alert);
+    const deleteUser = (e: any) => {
+        e.preventDefault();
+        if (confirm(`Удалить пользователя ${inOut.currentUser?.username} ?`)) {
+            inOut.deleteUser().then(alert);
+        }
+    }
 
-    return <section css={css(theme.sections.common)}>
-        <h2>Изменение пользователя</h2>
+    if (!inOut.isAuthenticated) {
+        return <Redirect to="/login" />
+    }
+
+    return <div css={css(theme.divs.commonPage)}><section css={css(theme.sections.common)}>
+        <h2>Изменение или удаление профиля пользователя</h2>
         <form
             css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}
             onSubmit={updateUser}
@@ -131,7 +139,8 @@ const _Profile: React.FC = () => {
                 </button>
             </div>
         </form>
-    </section>;
+    </section></div >
+
 }
 
 export const Profile = observer(_Profile);

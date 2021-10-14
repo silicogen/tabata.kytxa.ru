@@ -21,7 +21,7 @@ const _Login: React.FC = () => {
     }
 
     if (inOut.isAuthenticated) {
-        return <section css={css(theme.sections.common)}>
+        return <div css={css(theme.divs.commonPage)}><section css={css(theme.sections.common)}>
             <h2>Выполнен вход на сервер. Пользователь: {inOut.currentUser?.username}, почта: {inOut.currentUser?.email}</h2>
 
             <form
@@ -29,10 +29,10 @@ const _Login: React.FC = () => {
             >
                 <NavLink to="/profile" css={css(theme.navLinks.pageNavLink)}>Редактировать пользователя {inOut.currentUser?.username}</NavLink>
             </form>
-        </section>;
+        </section></div>;
     }
-    return <section css={css(theme.sections.common)}>
-        <h2>Вход-выход</h2>
+    return <div css={css(theme.divs.commonPage)}><section css={css(theme.sections.common)}>
+        <h2>Вход</h2>
 
         <form
             css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}
@@ -83,6 +83,6 @@ const _Login: React.FC = () => {
                 <NavLink to="/registration" css={css(theme.navLinks.pageNavLink)}>Регистрация</NavLink>
             </div>
         </form>
-    </section>;
+    </section></div>;
 }
 export const Login = observer(_Login);

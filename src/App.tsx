@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, SystemStyleObject } from "@styled-system/css";
+import { css } from "@styled-system/css";
 
 import { useRoot } from "store/Root";
 import {
@@ -23,7 +23,9 @@ import { useRemote } from 'store/Remote';
 import { InOut } from 'views/Pages/ImportExport/Remote/User/InOut';
 import { Registration } from 'views/Pages/ImportExport/Remote/User/Registration';
 import { UpdateUser } from 'views/Pages/ImportExport/Remote/User/UpdateUser';
-import { HomeSVG, PlaySVG } from "icons/used";
+import {
+    HomeSVG, PlaySVG, TraineSVG, ExercizeSVG, PhazeSVG, FileSVG, ServerSVG
+} from "icons/used";
 
 const App: React.FC = () => {
     const root = useRoot();
@@ -76,19 +78,19 @@ const App: React.FC = () => {
                     <PlaySVG css={css(theme.svgs.inMenuNavLink)} />Выполнение
                 </MenuNavLink>
                 <MenuNavLink to="/workouts">
-                    <PlaySVG css={css(theme.svgs.inMenuNavLink)} />Тренировки
+                    <TraineSVG css={css(theme.svgs.inMenuNavLink)} />Тренировки
                 </MenuNavLink>
                 <MenuNavLink to="/exercizes">
-                    <PlaySVG css={css(theme.svgs.inMenuNavLink)} />Упражнения
+                    <ExercizeSVG css={css(theme.svgs.inMenuNavLink)} />Упражнения
                 </MenuNavLink>
                 <MenuNavLink to="/phazes">
-                    <PlaySVG css={css(theme.svgs.inMenuNavLink)} />Фазы
+                    <PhazeSVG css={css(theme.svgs.inMenuNavLink)} />Фазы
                 </MenuNavLink>
                 <MenuNavLink to="/file">
-                    <PlaySVG css={css(theme.svgs.inMenuNavLink)} />Файл
+                    <FileSVG css={css(theme.svgs.inMenuNavLink)} />Файл
                 </MenuNavLink>
                 <MenuNavLink to="/server">
-                    <PlaySVG css={css(theme.svgs.inMenuNavLink)} />Сервер
+                    <ServerSVG css={css(theme.svgs.inMenuNavLink)} />Сервер
                 </MenuNavLink>
             </nav>
 

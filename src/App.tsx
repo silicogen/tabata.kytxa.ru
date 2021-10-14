@@ -24,7 +24,8 @@ import { InOut } from 'views/Pages/ImportExport/Remote/User/InOut';
 import { Registration } from 'views/Pages/ImportExport/Remote/User/Registration';
 import { UpdateUser } from 'views/Pages/ImportExport/Remote/User/UpdateUser';
 import {
-    HomeSVG, PlaySVG, TraineSVG, ExercizeSVG, PhazeSVG, FileSVG, ServerSVG
+    HomeSVG, PlaySVG, TraineSVG, ExercizeSVG, PhazeSVG, FileSVG, ServerSVG,
+    UserInSVG, UserOutSVG
 } from "icons/used";
 
 const App: React.FC = () => {
@@ -55,17 +56,18 @@ const App: React.FC = () => {
                         <Route path="/userEdit">Изменить пользователя</Route>
                     </Switch>
                 </span>
-                <span>
+                <span css={css({ display: "flex", alignItems: "center" })}>
+
                     {inOut.isAuthenticated
                         ? <NavLink
                             to="/login"
                             onClick={inOut.logOut}
                             css={css(theme.navLinks.headNavLink)}
-                        >Выйти</NavLink>
+                        ><UserOutSVG css={css(theme.svgs.inOutHeadLink)} />Выйти</NavLink>
                         : <NavLink
                             to="/login"
                             css={css(theme.navLinks.headNavLink)}
-                        >Логин</NavLink>}
+                        >< UserInSVG css={css(theme.svgs.inOutHeadLink)} />Логин</NavLink>}
                 </span>
             </header>
 

@@ -122,6 +122,8 @@ const theme = {
       }
     },
     headNavLink: {
+      display: "flex",
+      alignItems: "center",
       color: 'rgba(255, 255, 255, 1)',
       fontSize: '1.1rem',
       textDecoration: 'none',
@@ -132,7 +134,7 @@ const theme = {
       '&:hover': {
         textDecoration: 'underline'
       }
-    },
+    } as SystemStyleObject,
     pageNavLink: {
       fontSize: '1.3rem',
       "&.active": {
@@ -141,7 +143,7 @@ const theme = {
       '&:hover': {
         textDecoration: 'underline'
       }
-    }
+    } as SystemStyleObject,
   },
   divs: {
     listDetailsPage: {
@@ -282,6 +284,12 @@ const theme = {
     inMenuNavLink: {
       width: "1.2rem",
       height: "1.2rem",
+      mr: "0.7rem",
+    } as SystemStyleObject,
+
+    inOutHeadLink: {
+      width: "1.6rem",
+      height: "1.6rem",
       mr: "0.7rem",
     } as SystemStyleObject
   }

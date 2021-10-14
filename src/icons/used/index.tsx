@@ -1,4 +1,3 @@
-
 import PlaySVG from "../ionicons-2.0.1/play.svg";
 import PauseSVG from "../ionicons-2.0.1/pause.svg";
 import StopSVG from "../ionicons-2.0.1/stop.svg";
@@ -23,6 +22,9 @@ import ExercizeSVG from "../ionicons-2.0.1/android-walk.svg";
 import PhazeSVG from "../ionicons-2.0.1/android-time.svg";
 import FileSVG from "../ionicons-2.0.1/android-desktop.svg";
 import ServerSVG from "../ionicons-2.0.1/android-cloud-outline.svg";
+import UserInSVG from "../ionicons-2.0.1/ios-person-outline.svg";
+import UserOutSVG from "../ionicons-2.0.1/ios-person.svg";
+
 
 export {
     HomeSVG,
@@ -45,5 +47,7 @@ export {
     ExercizeSVG,
     PhazeSVG,
     FileSVG,
-    ServerSVG
+    ServerSVG,
+    UserInSVG,
+    UserOutSVG
 };

@@ -5,7 +5,7 @@ import { useRemote } from "store/Remote";
 import { observer } from "mobx-react-lite";
 import { NavLink } from "react-router-dom";
 
-const _UpdateUser: React.FC = () => {
+const _Profile: React.FC = () => {
     const theme = useTheme();
     const inOut = useRemote().inOut;
 
@@ -41,6 +41,8 @@ const _UpdateUser: React.FC = () => {
         // .then(clearInput);
 
     }
+
+    const deleteUser = () => inOut.deleteUser().then(alert);
 
     return <section css={css(theme.sections.common)}>
         <h2>Изменение пользователя</h2>
@@ -115,15 +117,21 @@ const _UpdateUser: React.FC = () => {
                 <small css={css({ color: "red" })}>Не верный логин или пароль</small>
                 : undefined}
 
-            <div css={css({ display: "flex", gap: "3rem", alignItems: "center" })}>
+            <div css={css({ display: "flex", flexFlow: "column", gap: "3rem" })}>
                 <button
                     type="submit"
                     disabled={!user.email || !user.current_password || !user.new_password}
                     css={css(theme.buttons.primary)}
                 >Изменить пользователя </button>
+
+                <button
+                    css={css(theme.buttons.primary)}
+                    onClick={deleteUser}
+                >Удалить пользователя {inOut.currentUser?.username}
+                </button>
             </div>
         </form>
     </section>;
 }
 
-export const UpdateUser = observer(_UpdateUser);
+export const Profile = observer(_Profile);

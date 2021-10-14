@@ -20,9 +20,9 @@ import { observer } from "mobx-react";
 import { HamburgerButton } from "views/Controls/Buttons";
 import theme from "css/theme";
 import { useRemote } from 'store/Remote';
-import { InOut } from 'views/Pages/ImportExport/Remote/User/InOut';
+import { Login } from 'views/Pages/ImportExport/Remote/User/Login';
 import { Registration } from 'views/Pages/ImportExport/Remote/User/Registration';
-import { UpdateUser } from 'views/Pages/ImportExport/Remote/User/UpdateUser';
+import { Profile } from 'views/Pages/ImportExport/Remote/User/Profile';
 import {
     HomeSVG, PlaySVG, TraineSVG, ExercizeSVG, PhazeSVG, FileSVG, ServerSVG,
     UserInSVG, UserOutSVG
@@ -54,7 +54,7 @@ const App: React.FC = () => {
                         <Route path="/server">Сервер</Route>
                         <Route path="/file">Файл</Route>
                         <Route path="/login">Логин</Route>
-                        <Route path="/userEdit">Изменить пользователя</Route>
+                        <Route path="/profile">Профиль</Route>
                     </Switch>
                 </span>
 
@@ -107,9 +107,9 @@ const App: React.FC = () => {
                     <Route path="/phazes" component={PhazesPage} />
                     <Route path="/file" component={LocalImportExport} />
                     <Route path="/server" component={RemoteImportExport} />
-                    <Route path="/login" component={InOut} />
+                    <Route path="/login" component={Login} />
                     <Route path="/registration" component={Registration} />
-                    <Route path="/updateUser" component={UpdateUser} />
+                    <Route path="/profile" component={Profile} />
                 </Switch>
             </main>
         </Router>

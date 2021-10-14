@@ -75,8 +75,6 @@ const App: React.FC = () => {
                 <MenuNavLink to="/phazes">Фазы</MenuNavLink>
                 <MenuNavLink to="/file">Файл</MenuNavLink>
                 <MenuNavLink to="/server">Сервер</MenuNavLink>
-                <MenuNavLink to="/about">Что это?</MenuNavLink>
-
             </nav>
 
             <main onClick={uiStore.collapseNavMenu}

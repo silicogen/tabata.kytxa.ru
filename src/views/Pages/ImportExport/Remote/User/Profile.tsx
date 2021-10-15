@@ -53,28 +53,12 @@ const _Profile: React.FC = () => {
     }
 
     return <div css={css(theme.divs.commonPage)}><section css={css(theme.sections.common)}>
-        <h2>Изменение или удаление профиля пользователя</h2>
+        <h2>Изменение или удаление профиля пользователя {inOut.currentUser?.username}</h2>
         <form
             css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}
             onSubmit={updateUser}
         >
             <div css={css(theme.divs.params)}>
-                <label
-                    htmlFor="userNameInput"
-                    style={{ justifySelf: "end" }}>
-                    Текущий пользователь:
-                </label>
-                <input
-                    type="text"
-                    name="username"
-                    placeholder="Введите ник пользователя"
-                    disabled={true}
-                    onChange={handleChange}
-                    value={inOut.currentUser?.username}
-                    id="userNameInput"
-                    css={css(theme.inputs.name)}
-                />
-
                 <label
                     htmlFor="loginInput"
                     style={{ justifySelf: "end" }}>
@@ -93,7 +77,7 @@ const _Profile: React.FC = () => {
                 <label
                     htmlFor="current_passwordInput"
                     style={{ justifySelf: "end" }}>
-                    Текущий пароль:
+                    Пароль:
                 </label>
                 <input
                     type="password"

@@ -36,7 +36,7 @@ const Goer: React.FC = () => {
 
     return <div css={css(theme.divs.commonPage)}>
         <section css={css(theme.sections.common)}>
-            <h2>Выполнение упражнения <i>{workout?.name}</i></h2>
+            <h2>Выполнение тренировки <i>{workout?.name}</i></h2>
             <div css={css({ display: "flex", flexFlow: "row wrap", gap: "1rem", m: "1rem 0" })}>
                 <button
                     css={css(theme.buttons.primary)}

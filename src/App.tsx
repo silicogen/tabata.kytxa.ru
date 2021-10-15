@@ -6,10 +6,12 @@ import {
     HashRouter as Router,
     Switch,
     Route,
-    NavLink
+    NavLink,
+    Redirect
 } from "react-router-dom";
 import { MenuNavLink } from 'views/Misc/NavLink';
 import Home from "views/Pages/Home";
+import { About } from "views/Pages/About"
 import { Page as WorkoutsPage } from 'views/Pages/Workouts';
 import { Page as ExercizesPage, DisplayPath as ExercizesDisplayPath } from 'views/Pages/Exercizes';
 import { Page as PhazesPage, DisplayPath as PhazesDisplayPath } from 'views/Pages/Phazes';
@@ -40,7 +42,6 @@ const App: React.FC = () => {
                 <span>
                     Табата\
                     <Switch >
-                        <Route path="/" exact>Дом</Route>
                         <Route path="/go">Выполнение</Route>
                         <Route path="/workouts">Тренировки</Route>
                         <Route
@@ -56,6 +57,7 @@ const App: React.FC = () => {
                         <Route path="/login">Логин</Route>
                         <Route path="/profile">Профиль</Route>
                         <Route path="/registration">Регистрация</Route>
+                        <Route path="/about">О сайте</Route>
                     </Switch>
                 </span>
 
@@ -73,11 +75,8 @@ const App: React.FC = () => {
                 </span>
             </header>
 
-            <nav
-                css={css(theme.layout.nav(uiStore.navMenuIsCollapsed))}>
-                <MenuNavLink to="/" exact>
-                    <HomeSVG css={css(theme.svgs.inMenuNavLink)} />Домой
-                </MenuNavLink>
+            <nav css={css(theme.layout.nav(uiStore.navMenuIsCollapsed))}>
+
                 <MenuNavLink to="/go" >
                     <PlaySVG css={css(theme.svgs.inMenuNavLink)} />Выполнение
                 </MenuNavLink>
@@ -96,12 +95,15 @@ const App: React.FC = () => {
                 <MenuNavLink to="/server">
                     <ServerSVG css={css(theme.svgs.inMenuNavLink)} />Сервер
                 </MenuNavLink>
+                <MenuNavLink to="/about">
+                    <HomeSVG css={css(theme.svgs.inMenuNavLink)} />Что это
+                </MenuNavLink>
             </nav>
 
             <main onClick={uiStore.collapseNavMenu}
                 css={css(theme.layout.main)} >
                 <Switch>
-                    <Route path="/" exact component={Home} />
+                    <Route path="/" exact component={() => <Redirect to="/go" />} />
                     <Route path="/go" component={Goer} />
                     <Route path="/workouts" component={WorkoutsPage} />
                     <Route path="/exercizes" component={ExercizesPage} />
@@ -111,6 +113,7 @@ const App: React.FC = () => {
                     <Route path="/login" component={Login} />
                     <Route path="/registration" component={Registration} />
                     <Route path="/profile" component={Profile} />
+                    <Route path="/about" component={About} />
                 </Switch>
             </main>
         </Router>

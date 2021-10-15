@@ -1,6 +1,6 @@
 import { css } from "@styled-system/css";
 
-const Home: React.FC = () => {
+const _About: React.FC = () => {
   const tabata = <a href="https://training365.ru/trenirovki-tabata/" target="blanck">табата</a>;
   const pwa = <a href="https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B5%D1%81%D1%81%D0%B8%D0%B2%D0%BD%D0%BE%D0%B5_%D0%B2%D0%B5%D0%B1-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5" target="blanck">PWA</a>;
   return <div css={css({ margin: "20px" })} >
@@ -36,4 +36,4 @@ const Home: React.FC = () => {
   </div >
 }
 
-export default Home;
+export const About = _About;

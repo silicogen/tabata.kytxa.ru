@@ -31,29 +31,46 @@ const _CRUD: React.FC = () => {
         applySnapshot(root, json);
     }
 
-    return <form css={css({ display: "flex", flexFlow: "row wrap", gap: "1rem" })}>
-        <button
-            css={css(theme.buttons.primary)}
-            onClick={saveNew}
-        >Создать</button>
+    const loadExample = async () => {
+        const content = await wrksnps.loadExample();
+        const json = JSON.parse(content);
+        applySnapshot(root, json);
+    }
 
-        <button
-            css={css(theme.buttons.primary)}
-            disabled={!wrksnp}
-            onClick={saveTo}
-        >Сохранить в</button>
+    return <form css={css({ display: "flex", flexFlow: "column wrap", gap: "1rem" })}>
 
-        <button
-            css={css(theme.buttons.primary)}
-            disabled={!wrksnp}
-            onClick={load}
-        >Загрузить из</button>
+        <div css={css({ display: "flex", flexFlow: "row wrap", gap: "1rem" })}>
+            <button
+                css={css(theme.buttons.primary)}
+                onClick={loadExample}
+            >Загрузить хранилище с примерами тренировок</button>
+        </div>
 
-        <button
-            css={css(theme.buttons.primary)}
-            disabled={!wrksnp}
-            onClick={wrksnps?.delete}
-        >Удалить</button>
+        <div css={css({ display: "flex", flexFlow: "row wrap", gap: "1rem" })}>
+            <button
+                css={css(theme.buttons.primary)}
+                onClick={saveNew}
+            >Создать</button>
+
+            <button
+                css={css(theme.buttons.primary)}
+                disabled={!wrksnp}
+                onClick={saveTo}
+            >Сохранить в</button>
+
+            <button
+                css={css(theme.buttons.primary)}
+                disabled={!wrksnp}
+                onClick={load}
+            >Загрузить из</button>
+
+
+            <button
+                css={css(theme.buttons.primary)}
+                disabled={!wrksnp}
+                onClick={wrksnps?.delete}
+            >Удалить</button></div>
+
     </form>
 
 }

@@ -21,7 +21,7 @@ export const Wrksnp = types
         async saveName(title: string) {
             let message: string;
             try {
-                const j =0;
+                const j = 0;
                 const res = await axios.put(`${API_ROUTE}/posts/${self!.id}`, {
                     title
                 });
@@ -46,7 +46,7 @@ export const Wrksnp = types
         },
         async saveTo(snapStr: string, title: string) {
             let message: string;
-            const j =0;
+            const j = 0;
             try {
                 const res = await axios.put(`${API_ROUTE}/posts/${self!.id}`, {
                     content: snapStr,
@@ -54,7 +54,7 @@ export const Wrksnp = types
                 });
 
                 if (res.status >= 200 && res.status < 300) {
-                    const i =0;
+                    const i = 0;
                     const resp = await axios.get(`${API_ROUTE}/posts/${self!.id}`);
                     const response = resp.data.response;
                     this?.setUpdated_at(response.updated_at)
@@ -105,6 +105,11 @@ export const Wrksnps = types
         },
         addItem(item: SnapshotOrInstance<typeof Wrksnp>) {
             self.items.splice(0, 0, item);
+        },
+        async loadExample() {
+            const res = await axios.get(`${API_ROUTE}/posts/1`);
+            const content = res.data.response.content;
+            return content;
         },
         async saveNew(snapStr: string) {
             const title = `Новое хранилище ${new Date().toLocaleString()}`;

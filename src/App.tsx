@@ -10,7 +10,6 @@ import {
     Redirect
 } from "react-router-dom";
 import { MenuNavLink } from 'views/Misc/NavLink';
-import Home from "views/Pages/Home";
 import { About } from "views/Pages/About"
 import { Page as WorkoutsPage } from 'views/Pages/Workouts';
 import { Page as ExercizesPage, DisplayPath as ExercizesDisplayPath } from 'views/Pages/Exercizes';

@@ -22,12 +22,12 @@ export const Wrksnp = types
             let message: string;
             try {
                 const j = 0;
-                const res = await axios.put(`${API_ROUTE}/posts/${self!.id}`, {
+                const res = await axios.put(`${API_ROUTE}/wrksnps/${self!.id}`, {
                     title
                 });
 
                 if (res.status >= 200 && res.status < 300) {
-                    const resp = await axios.get(`${API_ROUTE}/posts/${self!.id}`);
+                    const resp = await axios.get(`${API_ROUTE}/wrksnps/${self!.id}`);
                     const response = resp.data.response;
                     this?.setUpdated_at(response.updated_at)
                     this?.setTitle(title);
@@ -48,14 +48,14 @@ export const Wrksnp = types
             let message: string;
             const j = 0;
             try {
-                const res = await axios.put(`${API_ROUTE}/posts/${self!.id}`, {
+                const res = await axios.put(`${API_ROUTE}/wrksnps/${self!.id}`, {
                     content: snapStr,
                     title
                 });
 
                 if (res.status >= 200 && res.status < 300) {
                     const i = 0;
-                    const resp = await axios.get(`${API_ROUTE}/posts/${self!.id}`);
+                    const resp = await axios.get(`${API_ROUTE}/wrksnps/${self!.id}`);
                     const response = resp.data.response;
                     this?.setUpdated_at(response.updated_at)
                     this?.setTitle(title);
@@ -75,7 +75,7 @@ export const Wrksnp = types
     }))
     .views(self => ({
         async load() {
-            const res = await axios.get(`${API_ROUTE}/posts/${self.id}`);
+            const res = await axios.get(`${API_ROUTE}/wrksnps/${self.id}`);
             const content = res.data.response.content;
             return content;
         }
@@ -89,8 +89,8 @@ export const Wrksnps = types
     .actions(self => ({
         fetch() {
             const remote = getParentOfType(self, Remote);
-            axios.get(`${API_ROUTE}/user_posts/${remote.inOut.currentUser?.id}`)
-                // axios.get(`${API_ROUTE}/posts`)
+            axios.get(`${API_ROUTE}/user_wrksnps/${remote.inOut.currentUser?.id}`)
+                // axios.get(`${API_ROUTE}/wrksnps`)
                 .then(resp => {
                     const response = resp.data.response;
                     response.forEach((w: any) => w.username = w.author.username)
@@ -107,7 +107,7 @@ export const Wrksnps = types
             self.items.splice(0, 0, item);
         },
         async loadExample() {
-            const res = await axios.get(`${API_ROUTE}/posts/1`);
+            const res = await axios.get(`${API_ROUTE}/wrksnps/1`);
             const content = res.data.response.content;
             return content;
         },
@@ -115,7 +115,7 @@ export const Wrksnps = types
             const title = `Новое хранилище ${new Date().toLocaleString()}`;
             let res;
             try {
-                res = await axios.post(`${API_ROUTE}/posts`, {
+                res = await axios.post(`${API_ROUTE}/wrksnps`, {
                     content: snapStr,
                     title
                 });
@@ -138,7 +138,7 @@ export const Wrksnps = types
         async delete() {
             const title = self.selected?.title;
             try {
-                const res = await axios.delete(`${API_ROUTE}/posts/${self.selected!.id}`);
+                const res = await axios.delete(`${API_ROUTE}/wrksnps/${self.selected!.id}`);
                 let message: string;
                 if (res.status >= 200 && res.status < 300) {
                     this.rmItem(self.selected!);

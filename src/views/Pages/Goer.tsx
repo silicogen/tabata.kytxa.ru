@@ -33,10 +33,10 @@ const Goer: React.FC = () => {
         const json = JSON.parse(content);
         applySnapshot(root, json);
     }
-    //justifyContent:"space-around"
+
     return <div css={css(theme.divs.commonPage)}>
         <section css={css(theme.sections.common)}>
-            {/* {goer.exercizeNumber} */}
+            <h2>Выполнение упражнения <i>{workout?.name}</i></h2>
             <div css={css({ display: "flex", flexFlow: "row wrap", gap: "1rem", m: "1rem 0" })}>
                 <button
                     css={css(theme.buttons.primary)}
@@ -78,6 +78,7 @@ const Goer: React.FC = () => {
             </div>
 
             <div css={css({ m: "1rem " })}>
+                <h3>{workout?.name}</h3>
                 Фазы
                 <ul>
                     {phazes.map(p =>

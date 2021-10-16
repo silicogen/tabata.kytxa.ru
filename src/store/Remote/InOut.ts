@@ -5,7 +5,13 @@ import { CurrentUser } from "./CurrentUser";
 import { setToken, remToken, saveToken, saveUserData, loseToken, loseUserData } from "auth";
 import { jsonStr } from "utils";
 
-
+const catchResponse = (ex: any) => {
+    if (axios.isAxiosError(ex)) {
+        return ex?.response?.data;
+    } else {
+        return ex?.response;
+    }
+}
 export const InOut = types
     .model("InOut", {
         currentUser: types.maybe(CurrentUser),
@@ -40,11 +46,7 @@ export const InOut = types
                 loseUserData();
                 remToken();
                 this.setCurrentUser(undefined);
-                if (axios.isAxiosError(ex)) {
-                    return ex?.response?.data;
-                } else {
-                    return ex?.response;
-                }
+                return catchResponse(ex);
             }
         },
 
@@ -83,24 +85,18 @@ export const InOut = types
             email: string,
             current_password: string,
             new_password: string
-        }): Promise<string> {
+        }) {
             try {
                 const axiRes = await axios.put(`${API_ROUTE}/users/${self.currentUser?.id}`, updateUser);
                 const { id, username, email } = axiRes.data.response;
                 saveUserData({ id, username, email });
                 if (axiRes.data.status == 200) {
-                    return `Пользователь сохранён с именем ${username} и почтой ${email}.`;
+                    return axiRes.data;
                 } else {
-                    return `Изменение пользователя выполнено без возникновения исключительнной ситуации, но всё-же что-то пошло не так, поскольку статус не равен 200: ${jsonStr(axiRes)}`;
+                    return axiRes;
                 }
             } catch (ex) {
-                const ex1 = ex;
-                if (axios.isAxiosError(ex)) {
-                    return `Axios error response data: ${jsonStr(ex.response?.data)}`;
-                }
-                else {
-                    return `Some Error: ${jsonStr(ex)}`;
-                }
+                return catchResponse(ex);
             }
         },
 

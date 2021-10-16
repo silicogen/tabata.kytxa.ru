@@ -4,20 +4,22 @@ import { useTheme } from "css/theme";
 import { useRemote } from "store/Remote";
 import { observer } from "mobx-react-lite";
 import { NavLink } from "react-router-dom";
+import { jsonStr } from "utils";
 
 const _Login: React.FC = () => {
     const [credentials, setCredentials] = useState({ email: '', password: '' });
+    const [response, setResponse] = useState({});
     const theme = useTheme();
     const inOut = useRemote().inOut;
 
     const credentialsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        inOut.setIncorrectPasswordOrEmail(false);
+        setResponse({});
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
 
     const logIn = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        inOut.logIn(credentials).then(alert);
+        inOut.logIn(credentials).then(setResponse);
     }
 
     if (inOut.isAuthenticated) {
@@ -69,9 +71,8 @@ const _Login: React.FC = () => {
                 />
 
             </div>
-            {inOut.incorrectPasswordOrEmail ?
-                <small css={css({ color: "red" })}>Не верный логин или пароль</small>
-                : undefined}
+            {"error" in response &&
+                <small css={css({ color: "red" })}>Не верный логин или пароль</small>}
 
             <div css={css({ display: "flex", gap: "3rem", alignItems: "center" })}>
                 <button

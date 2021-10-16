@@ -12,7 +12,7 @@ const _Registration: React.FC = () => {
     const inOut = useRemote().inOut;
 
     const credentialsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        inOut.setIncorrectPasswordOrEmail(false);
+        // inOut.setIncorrectPasswordOrEmail(false);
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
     const clearInput = () => {

@@ -13,9 +13,9 @@ export const InOut = types
     })
     .actions(self => ({
 
-        setIncorrectPasswordOrEmail(incorrect: boolean) {
-            self.incorrectPasswordOrEmail = incorrect;
-        },
+        // setIncorrectPasswordOrEmail(incorrect: boolean) {
+        //     self.incorrectPasswordOrEmail = incorrect;
+        // },
 
         setCurrentUser(user?: SnapshotOrInstance<typeof CurrentUser>) {
             self.currentUser = user;
@@ -31,26 +31,19 @@ export const InOut = types
                     saveUserData(user);
                     setToken(token);
                     this.setCurrentUser(user);
-                    return `Пользователь с именем ${username} и почтой ${email} получил доступ к серверу.`;
+                    return axiRes.data;
                 } else {
-                    return `Получение пользователем доступа на сервер выполнено без возникновения исключительнной ситуации, но всё-же что-то пошло не так, поскольку статус не равен 200: ${jsonStr(axiRes)}`;
+                    return axiRes;
                 }
             } catch (ex: any) {
-                const ex1 = ex;
                 loseToken()
                 loseUserData();
                 remToken();
                 this.setCurrentUser(undefined);
                 if (axios.isAxiosError(ex)) {
-                    const status = ex?.response?.status;
-                    const error = ex?.response?.data?.error;
-                    if (status == 422 && error?.Incorrect_password) {
-                        this.setIncorrectPasswordOrEmail(!!error?.Incorrect_password);
-                        return `Не верный логин или пароль`;
-                    } else
-                        return `Axios error response data: ${jsonStr(ex.response?.data)}`;
+                    return ex?.response?.data;
                 } else {
-                    return `Some Error: ${jsonStr(ex)}`;
+                    return ex?.response;
                 }
             }
         },

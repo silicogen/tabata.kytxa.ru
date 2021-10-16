@@ -62,15 +62,35 @@ const App: React.FC = () => {
 
                 <span css={css({ display: "flex", alignItems: "center" })}>
                     {inOut.isAuthenticated
-                        ? <NavLink
-                            to="/login"
-                            onClick={inOut.logOut}
-                            css={css(theme.navLinks.headNavLink)}
-                        ><UserOutSVG css={css(theme.svgs.inOutHeadLink)} />Выйти</NavLink>
-                        : <NavLink
-                            to="/login"
-                            css={css(theme.navLinks.headNavLink)}
-                        >< UserInSVG css={css(theme.svgs.inOutHeadLink)} />Логин</NavLink>}
+                        ? <>
+                            <NavLink
+                                to="/profile"
+                                css={css(theme.navLinks.headNavLink)}
+                            >
+                                <span
+                                    css={css({ display: ["none", "initial"] })}
+                                >{inOut.currentUser?.username}</span>
+                                <UserOutSVG css={css(theme.svgs.inOutHeadLink)} />
+                            </NavLink>
+
+                            <NavLink
+                                to="/login"
+                                onClick={inOut.logOut}
+                                css={css(theme.navLinks.headNavLink)}
+                            >Выйти</NavLink>
+                        </>
+                        : <>
+                            <NavLink
+                                to="/registration"
+                                css={css(theme.navLinks.headNavLink)}
+                            >< UserInSVG css={css(theme.svgs.inOutHeadLink)} /> </NavLink>
+
+                            <NavLink
+                                to="/login"
+                                css={css(theme.navLinks.headNavLink)}
+                            >Логин</NavLink>
+                        </>
+                    }
                 </span>
             </header>
 

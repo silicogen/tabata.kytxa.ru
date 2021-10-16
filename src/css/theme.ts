@@ -7,7 +7,8 @@ const selectedRowitem = (isSelected: () => boolean) => ({
 }) as SystemStyleObject;
 
 const fontSizes = {
-  input: "1.3rem"
+  input: "1.3rem",
+  commonText: "1.3rem"
 };
 
 const colors = {
@@ -289,8 +290,8 @@ const theme = {
     } as SystemStyleObject,
 
     inOutHeadLink: {
-      width: "1.6rem",
-      height: "1.6rem",
+      width: "2rem",
+      height: "2rem",
       mr: "0.7rem",
     } as SystemStyleObject
   }

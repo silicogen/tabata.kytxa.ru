@@ -53,12 +53,14 @@ const _Profile: React.FC = () => {
     }
 
     return <div css={css(theme.divs.commonPage)}><section css={css(theme.sections.common)}>
-        <h2>Изменение или удаление профиля пользователя {inOut.currentUser?.username}</h2>
+        <h2>Изменение или удаление профиля пользователя </h2>
         <form
             css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}
             onSubmit={updateUser}
         >
             <div css={css(theme.divs.params)}>
+                <span style={{ justifySelf: "end" }}>Имя:</span>
+                <span css={css({ fontSize: theme.fontSizes.commonText })}>{inOut.currentUser?.username}</span>
                 <label
                     htmlFor="loginInput"
                     style={{ justifySelf: "end" }}>

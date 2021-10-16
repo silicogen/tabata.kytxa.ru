@@ -17,7 +17,7 @@ const Table: React.FC = () => {
         </colgroup>
         <thead>
             <tr>
-                <th css={css({ textAlign: "start" })}>Наименование тренировки</th>
+                <th>Наименование тренировки</th>
                 <th>Количество упражнений</th>
             </tr>
         </thead>

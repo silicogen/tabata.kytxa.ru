@@ -11,7 +11,7 @@ const _Wrksnps = () => {
     const wrksnps = remote.wrksnps;
     useEffect(wrksnps.fetch, []);
     return <table>
-        <caption css={css({ captionSide: "top", fontSize: "1.5rem", pb: "0" })}>
+        <caption >
             Хранилища
         </caption>
         <thead>

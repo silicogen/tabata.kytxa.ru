@@ -157,13 +157,14 @@ const theme = {
       gridTemplateColumns: ["1fr", "1fr", "1fr", "1fr 1fr"],
       gridTemplateAreas: ["'details' 'list'", "'details' 'list'", "'details' 'list'", "'list details'"],
     } as SystemStyleObject,
-
     commonPage: {
-      display: "grid",
+      // display: "grid",
+      display: "flex",
       gap: ["0.7rem"],
     } as SystemStyleObject,
-
     subPage: {
+      display: "flex",
+      flexFlow: "column",
     } as SystemStyleObject,
     buttonsPanel: {
       display: "flex",

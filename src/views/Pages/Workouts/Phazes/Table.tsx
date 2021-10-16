@@ -11,7 +11,7 @@ const Table: React.FC = () => {
     return <table>
         <thead>
             <tr>
-                <th css={css({ textAlign: "start" })}>Наименование фазы тренировки</th>
+                <th >Наименование фазы тренировки</th>
             </tr>
         </thead>
         <tbody>

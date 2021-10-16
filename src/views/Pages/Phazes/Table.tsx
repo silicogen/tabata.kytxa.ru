@@ -5,7 +5,7 @@ import { css } from "@styled-system/css";
 import { useTheme } from "css/theme";
 import { useRoot } from "store/Root";
 import { TdMain, TdForWorkout, Tr } from "./Row";
-import LinkIntactSVG from "icons/oi/link-intact.svg";
+import { LinkIntactSVG } from "icons/used";
 
 interface Props {
     forWorkout: boolean;
@@ -24,7 +24,7 @@ const Table: React.FC<Props> = ({ forWorkout }) => {
         </colgroup>
         <thead>
             <tr>
-                <th css={css({ textAlign: "start" })}>Наименование фазы</th>
+                <th >Наименование фазы</th>
                 <th ><LinkIntactSVG css={css(theme.svgs.tableHeader)} /></th>
                 {forWorkout && <>
                     <th css={css({})}>

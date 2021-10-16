@@ -24,6 +24,7 @@ import FileSVG from "../ionicons-2.0.1/android-desktop.svg";
 import ServerSVG from "../ionicons-2.0.1/android-cloud-outline.svg";
 import UserInSVG from "../ionicons-2.0.1/ios-person-outline.svg";
 import UserOutSVG from "../ionicons-2.0.1/ios-person.svg";
+import LinkIntactSVG from "../oi/link-intact.svg";
 
 
 export {
@@ -49,5 +50,6 @@ export {
     FileSVG,
     ServerSVG,
     UserInSVG,
-    UserOutSVG
+    UserOutSVG,
+    LinkIntactSVG
 };

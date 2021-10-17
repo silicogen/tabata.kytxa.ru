@@ -15,13 +15,8 @@ const catchResponse = (ex: any) => {
 export const InOut = types
     .model("InOut", {
         currentUser: types.maybe(CurrentUser),
-        incorrectPasswordOrEmail: types.maybe(types.boolean),
     })
     .actions(self => ({
-
-        // setIncorrectPasswordOrEmail(incorrect: boolean) {
-        //     self.incorrectPasswordOrEmail = incorrect;
-        // },
 
         setCurrentUser(user?: SnapshotOrInstance<typeof CurrentUser>) {
             self.currentUser = user;

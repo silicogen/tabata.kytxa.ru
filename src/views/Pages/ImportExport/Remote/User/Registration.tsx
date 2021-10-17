@@ -6,115 +6,98 @@ import { observer } from "mobx-react-lite";
 
 const init = { username: '', email: '', password: '' };
 const _Registration: React.FC = () => {
-    const [credentials, setCredentials] = useState(init);
+    const [user, setUser] = useState(init);
     const theme = useTheme();
     const inOut = useRemote().inOut;
     const [response, setResponse] =
         useState<{ status?: number, error?: any, response?: any }>({});
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // inOut.setIncorrectPasswordOrEmail(false);
-        setCredentials({ ...credentials, [e.target.name]: e.target.value });
+        setUser({ ...user, [e.target.name]: e.target.value });
         setResponse({});
     }
-    const clearInput = () => {
-        setCredentials(init);
-    }
 
-    const register = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        inOut.register(credentials)
-            .then(r => {
-                setResponse(r)
-            })
-        // .then(clearInput);
-    }
-
-    const Response = () => {
-        if ("error" in response) {
-            const messages: string[] = [];
-            if (response.error?.Invalid_password) {
-                messages.push("Пароль должен содержать минимум 6 символов");
-            }
-
-            if (response.error?.Taken_username) {
-                messages.push("Пользователь с таким именем уже существует");
-            }
-
-            if (response.error?.Taken_email) {
-                messages.push("Данный адрес электронной почты уже используется в качестве логина");
-            }
-
-            if (messages.length > 0) {
-                return <div css={css({ display: "flex", flexFlow: "column" })}>
-                    {messages.map(m => <small css={css({ color: "red" })}>{m}</small>)}
-                </div>
-            }
-        } else if (response.status == 201) {
-            return <small css={css({ color: "green" })}>Пользователь создан</small>
-        }
-        return <></>;
+        inOut.register(user)
+            .then(setResponse)
     }
 
     return <div css={css(theme.divs.commonPage)}> <section css={css(theme.sections.common)}>
         <h2>Создание новой учётной записи</h2>
         <form
-            css={css({ display: "flex", flexFlow: "column", alignItems: "start", gap: "1rem" })}
-            onSubmit={register}
+            css={css(theme.divs.params)}
+            onSubmit={onSubmit}
         >
-            <div css={css(theme.divs.params)}>
-                <label
-                    htmlFor="userNameInput"
-                    style={{ justifySelf: "end" }}>
-                    Имя:
-                </label>
-                <input
-                    type="text"
-                    name="username"
-                    placeholder="Введите ник пользователя"
-                    onChange={onChange}
-                    value={credentials.username}
-                    id="userNameInput"
-                    css={css(theme.inputs.name)}
-                />
-                <label
-                    htmlFor="loginInput"
-                    style={{ justifySelf: "end" }}>
-                    Логин:
-                </label>
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Введите email"
-                    onChange={onChange}
-                    value={credentials.email}
-                    id="loginInput"
-                    css={css(theme.inputs.name)}
-                />
-                <label
-                    htmlFor="passwordInput"
-                    style={{ justifySelf: "end" }}>
-                    Пароль:
-                </label>
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Введите пароль"
-                    onChange={onChange}
-                    value={credentials.password}
-                    id="passwordInput"
-                    css={css(theme.inputs.name)}
-                />
+            <label
+                htmlFor="userNameInput"
+                css={css(theme.layout.params.label)}>
+                Имя:
+            </label>
+            <input
+                type="text"
+                name="username"
+                placeholder="Введите ник пользователя"
+                onChange={onChange}
+                value={user.username}
+                id="userNameInput"
+                css={css({ ...theme.inputs.name, ...theme.layout.params.content })}
+            />
+            {response.error?.Taken_username &&
+                <small css={css(theme.layout.params.errorMessage)}
+                >Пользователь с таким именем уже существует</small>}
 
-            </div>
-            <Response />
-            <div css={css({ display: "flex", gap: "3rem", alignItems: "center" })}>
-                <button
-                    type="submit"
-                    disabled={!credentials.email || !credentials.password}
-                    css={css(theme.buttons.primary)}
-                >Создать пользователя </button>
-            </div>
+
+            <label
+                htmlFor="loginInput"
+                css={css(theme.layout.params.label)}>
+                Логин:
+            </label>
+            <input
+                type="email"
+                name="email"
+                placeholder="Введите email"
+                onChange={onChange}
+                value={user.email}
+                id="loginInput"
+                css={css({ ...theme.inputs.name, ...theme.layout.params.content })}
+            />
+            {response.error?.Taken_email &&
+                <small css={css(theme.layout.params.errorMessage)}
+                >Данный адрес электронной почты уже используется в качестве логина</small>}
+
+
+            <label
+                htmlFor="passwordInput"
+                css={css(theme.layout.params.label)}>
+                Пароль:
+            </label>
+            <input
+                type="password"
+                name="password"
+                placeholder="Введите пароль"
+                onChange={onChange}
+                value={user.password}
+                id="passwordInput"
+                css={css(theme.inputs.name)}
+            />
+            {response.error?.Taken_email &&
+                <small css={css(theme.layout.params.errorMessage)}
+                >Пароль должен содержать минимум 6 символов
+                </small>}
+
+
+            <button
+                type="submit"
+                disabled={!user.email || !user.password}
+                css={css({ ...theme.layout.params.submitButton, ...theme.buttons.primary })}
+            >Создать пользователя </button>
+
+
+            {response.status == 201 &&
+                <small css={css(theme.layout.params.successMessage)}
+                >Пользователь создан
+                </small>}
         </form>
     </section></div>;
 }

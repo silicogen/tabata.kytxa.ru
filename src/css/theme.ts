@@ -97,6 +97,13 @@ const theme = {
       bg: colors.main,
       // p: ["0.3rem", "0.4rem", "0.6rem", "0.9rem", "1.1rem",],
     } as SystemStyleObject,
+    params: {
+      label: { justifySelf: "end" },
+      content: { justifySelf: "start" },
+      errorMessage: { color: "red", gridColumn: "1/3" },
+      successMessage: { color: "green", gridColumn: "1/3" },
+      submitButton: {  gridColumn: "2" }
+    }
 
   },
   navLinks: {

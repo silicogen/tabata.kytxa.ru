@@ -62,22 +62,16 @@ export const InOut = types
                 username: string,
                 email: string,
                 password: string
-            }): Promise<string> {
+            }) {
             try {
                 const axiRes = await axios.post(`${API_ROUTE}/users`, credentials);
-                const res = axiRes.data.response;
                 if (axiRes.data.status == 201) {
-                    return `Пользователь с именем ${res.username} и почтой ${res.email} успешно создан.`;
+                    return axiRes.data;
                 } else {
-                    return `Создание пользователя выполнено без возникновения исключительнной ситуации, но всё-же что-то пошло не так, поскольку статус не равен 201: ${jsonStr(axiRes)}`;
+                    return axiRes;
                 }
             } catch (ex) {
-                if (axios.isAxiosError(ex)) {
-                    return `Axios error response data: ${jsonStr(ex.response?.data)}`;
-                }
-                else {
-                    return `Some Error: ${jsonStr(ex)}`;
-                }
+                return catchResponse(ex);
             }
         },
 

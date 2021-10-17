@@ -82,7 +82,7 @@ const _Registration: React.FC = () => {
                 id="passwordInput"
                 css={css({ ...theme.inputs.name, ...theme.layout.params.content })}
             />
-            {resp.error?.Taken_email &&
+            {resp.error?.Invalid_password &&
                 <small css={css(theme.layout.params.errorMessage)}
                 >Пароль должен содержать минимум 6 символов
                 </small>}

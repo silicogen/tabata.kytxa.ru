@@ -4,27 +4,28 @@ import { useTheme } from "css/theme";
 import { useRemote } from "store/Remote";
 import { observer } from "mobx-react-lite";
 
+interface Response { status?: number; error?: any; response?: any; }
+interface User { username: string; email: string; password: string; }
+
 const init = { username: '', email: '', password: '' };
 const _Registration: React.FC = () => {
-    const [user, setUser] = useState(init);
     const theme = useTheme();
     const inOut = useRemote().inOut;
-    const [response, setResponse] =
-        useState<{ status?: number, error?: any, response?: any }>({});
+    const [user, setUser] = useState<User>(init);
+    const [resp, setResp] = useState<Response>({});
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUser({ ...user, [e.target.name]: e.target.value });
-        setResponse({});
+        setResp({});
     }
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        inOut.register(user)
-            .then(setResponse)
+        inOut.register(user).then(setResp)
     }
 
     return <div css={css(theme.divs.commonPage)}> <section css={css(theme.sections.common)}>
-        <h2>Создание новой учётной записи</h2>
+        <h2>Создание новой учётной записи пользователя</h2>
         <form
             css={css(theme.divs.params)}
             onSubmit={onSubmit}
@@ -43,7 +44,7 @@ const _Registration: React.FC = () => {
                 id="userNameInput"
                 css={css({ ...theme.inputs.name, ...theme.layout.params.content })}
             />
-            {response.error?.Taken_username &&
+            {resp.error?.Taken_username &&
                 <small css={css(theme.layout.params.errorMessage)}
                 >Пользователь с таким именем уже существует</small>}
 
@@ -62,7 +63,7 @@ const _Registration: React.FC = () => {
                 id="loginInput"
                 css={css({ ...theme.inputs.name, ...theme.layout.params.content })}
             />
-            {response.error?.Taken_email &&
+            {resp.error?.Taken_email &&
                 <small css={css(theme.layout.params.errorMessage)}
                 >Данный адрес электронной почты уже используется в качестве логина</small>}
 
@@ -79,9 +80,9 @@ const _Registration: React.FC = () => {
                 onChange={onChange}
                 value={user.password}
                 id="passwordInput"
-                css={css(theme.inputs.name)}
+                css={css({ ...theme.inputs.name, ...theme.layout.params.content })}
             />
-            {response.error?.Taken_email &&
+            {resp.error?.Taken_email &&
                 <small css={css(theme.layout.params.errorMessage)}
                 >Пароль должен содержать минимум 6 символов
                 </small>}
@@ -89,12 +90,12 @@ const _Registration: React.FC = () => {
 
             <button
                 type="submit"
-                disabled={!user.email || !user.password}
+                disabled={!(user.username && user.email && user.password)}
                 css={css({ ...theme.layout.params.submitButton, ...theme.buttons.primary })}
             >Создать пользователя </button>
 
 
-            {response.status == 201 &&
+            {resp.status == 201 &&
                 <small css={css(theme.layout.params.successMessage)}
                 >Пользователь создан
                 </small>}

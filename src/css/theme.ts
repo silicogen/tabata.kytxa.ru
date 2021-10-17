@@ -102,7 +102,7 @@ const theme = {
       content: { justifySelf: "start" },
       errorMessage: { color: "red", gridColumn: "1/3" },
       successMessage: { color: "green", gridColumn: "1/3" },
-      submitButton: {  gridColumn: "2" }
+      submitButton: { gridColumn: "1/3" }
     }
 
   },

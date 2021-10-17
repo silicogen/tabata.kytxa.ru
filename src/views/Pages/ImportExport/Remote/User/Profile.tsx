@@ -4,7 +4,6 @@ import { useTheme } from "css/theme";
 import { useRemote } from "store/Remote";
 import { observer } from "mobx-react-lite";
 import { Redirect } from "react-router-dom";
-import { jsonStr } from "utils";
 
 const _Profile: React.FC = () => {
     const theme = useTheme();
